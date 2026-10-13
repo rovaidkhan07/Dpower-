@@ -1,92 +1,29 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Crown, ArrowRight, Check } from "lucide-react";
+import React from "react";
+import Link from "next/link";
+import { ArrowRight, BadgePercent, Building2 } from "lucide-react";
 
 export function VipBanner() {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-    setSubmitted(true);
-    setTimeout(() => {
-      setEmail("");
-      setSubmitted(false);
-    }, 4000);
-  };
-
   return (
-    <section className="py-6 sm:py-10 bg-background overflow-hidden font-sans">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          className="rounded-3xl bg-gradient-to-r from-[#FF6B00] via-[#FF7A1A] to-[#FF8C33] text-white p-5 sm:p-8 lg:p-10 relative overflow-hidden shadow-lg"
-        >
-          {/* Subtle decorative glow circles */}
-          <div
-            aria-hidden="true"
-            className="absolute -top-16 -right-16 h-60 w-60 rounded-full bg-white/10 blur-3xl pointer-events-none"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute -bottom-16 right-1/4 h-48 w-48 rounded-full bg-black/10 blur-2xl pointer-events-none"
-          />
+    <section className="overflow-hidden bg-background py-7 font-sans sm:py-12">
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#9f1117] via-[#d71920] to-[#ef2b32] p-6 text-white shadow-xl sm:p-9 lg:p-11">
+          <div aria-hidden="true" className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+          <div aria-hidden="true" className="absolute -bottom-24 left-1/3 h-56 w-56 rounded-full bg-black/15 blur-3xl" />
 
-          <div className="relative z-10 max-w-xl">
-            {/* Tag with Crown icon */}
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-white/95 mb-2">
-              <Crown className="w-4 h-4 text-amber-200 fill-amber-200" aria-hidden="true" />
-              <span>Kharidly VIP Club</span>
+          <div className="relative z-10 grid items-center gap-7 md:grid-cols-[1fr_auto]">
+            <div className="max-w-2xl">
+              <div className="mb-3 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-white/90"><BadgePercent className="h-4 w-4" /> Trade Buyers</div>
+              <h2 className="text-2xl font-black leading-tight sm:text-3xl lg:text-4xl">Need stock for your shop or reseller business?</h2>
+              <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/90 sm:text-base">Send a bulk inquiry and discuss quantity, stock availability and trade requirements with DK Power before placing a larger order.</p>
             </div>
-
-            {/* Heading */}
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-white leading-tight">
-              Be the First to<br className="sm:hidden" /> Get Exclusive Deals
-            </h2>
-
-            {/* Subtitle */}
-            <p className="text-xs sm:text-sm text-white/90 mt-1 sm:mt-1.5 leading-relaxed">
-              Early access, special offers and more.
-            </p>
-
-            {/* Email form pill */}
-            <form onSubmit={handleSubmit} className="mt-4 sm:mt-6">
-              <div className="bg-white rounded-full flex items-center p-1.5 pl-4 max-w-md w-full shadow-md transition-shadow focus-within:ring-2 focus-within:ring-black/20">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address..."
-                  required
-                  aria-label="Email address for VIP Club"
-                  className="w-full bg-transparent border-0 outline-none text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:ring-0 pr-2"
-                />
-                <button
-                  type="submit"
-                  aria-label="Join VIP Club"
-                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black hover:bg-neutral-800 text-white flex items-center justify-center shrink-0 transition-all active:scale-95 shadow-sm"
-                >
-                  {submitted ? (
-                    <Check className="w-4 h-4 text-emerald-400" />
-                  ) : (
-                    <ArrowRight className="w-4 h-4" />
-                  )}
-                </button>
-              </div>
-              {submitted && (
-                <p className="text-[11px] text-white/95 mt-1.5 pl-3 font-semibold">
-                  ✓ You&apos;re subscribed to exclusive VIP deals!
-                </p>
-              )}
-            </form>
+            <div className="flex flex-wrap gap-3 md:justify-end">
+              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-extrabold text-[#b51218] transition hover:bg-zinc-100"><Building2 className="h-4 w-4" /> Bulk Inquiry</Link>
+              <Link href="/shop" className="inline-flex items-center gap-2 rounded-full border border-white/60 px-5 py-3 text-sm font-extrabold text-white transition hover:bg-white/10">View Catalog <ArrowRight className="h-4 w-4" /></Link>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
