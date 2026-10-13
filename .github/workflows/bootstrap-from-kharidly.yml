@@ -1,0 +1,59 @@
+name: Bootstrap DK Power from Kharidly
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout DK Power repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout latest Kharidly source
+        uses: actions/checkout@v4
+        with:
+          repository: rovaidkhan07/my-store
+          ref: main
+          path: _source
+
+      - name: Sync source safely
+        shell: bash
+        run: |
+          set -euo pipefail
+          rsync -a --delete \
+            --exclude '.git/' \
+            --exclude '.github/workflows/bootstrap-from-kharidly.yml' \
+            --exclude '.env' \
+            --exclude '.env.*' \
+            --include '.env.example' \
+            --exclude '.vercel/' \
+            _source/ ./
+          rm -rf _source
+
+      - name: Preserve bootstrap workflow for this commit
+        shell: bash
+        run: |
+          mkdir -p .github/workflows
+          git show HEAD:.github/workflows/bootstrap-from-kharidly.yml > .github/workflows/bootstrap-from-kharidly.yml
+
+      - name: Commit imported code
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No source changes to import.'
+            exit 0
+          fi
+          git commit -m 'Bootstrap DK Power from latest Kharidly main'
+          git push origin main
