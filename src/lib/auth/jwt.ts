@@ -8,8 +8,8 @@ function getJwtSecret(): Uint8Array | null {
   return secret ? new TextEncoder().encode(secret) : null;
 }
 
-export const ADMIN_COOKIE_NAME = "Kharidly_admin_session";
-export const CUSTOMER_COOKIE_NAME = "Kharidly_customer_session";
+export const ADMIN_COOKIE_NAME = "dk_power_admin_session";
+export const CUSTOMER_COOKIE_NAME = "dk_power_customer_session";
 
 // Backwards compatibility
 export const AUTH_COOKIE_NAME = ADMIN_COOKIE_NAME;
@@ -139,4 +139,3 @@ export async function getCustomerSession(): Promise<UserSessionPayload | null> {
     return null;
   }
 }
-
