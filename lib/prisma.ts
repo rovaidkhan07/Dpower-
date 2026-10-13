@@ -1,0 +1,90 @@
+import { Pool } from "pg";
+import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaClient } from "../generated/prisma/client";
+
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+  pool: Pool | undefined;
+};
+
+function getPool(): Pool {
+  if (globalForPrisma.pool) {
+    return globalForPrisma.pool;
+  }
+
+  let connectionString = process.env.DATABASE_URL;
+  if (!connectionString) {
+    console.warn("[Prisma] DATABASE_URL is not defined in environment variables.");
+  }
+
+  const isSSL =
+    Boolean(connectionString) &&
+    (connectionString?.includes("sslmode=require") ||
+      connectionString?.includes("db.prisma.io") ||
+      connectionString?.includes("neon.tech") ||
+      connectionString?.includes("supabase") ||
+      connectionString?.includes("railway") ||
+      connectionString?.includes("vercel-storage") ||
+      process.env.NODE_ENV === "production");
+
+  // Silence pg-connection-string v3 compatibility warning
+  if (connectionString && connectionString.includes("sslmode=require") && !connectionString.includes("uselibpqcompat=")) {
+    const separator = connectionString.includes("?") ? "&" : "?";
+    connectionString = `${connectionString}${separator}uselibpqcompat=true`;
+  }
+
+  const pool = new Pool({
+    connectionString: connectionString || undefined,
+    ssl: isSSL ? { rejectUnauthorized: false } : undefined,
+    max: 10,
+    idleTimeoutMillis: 10000,
+    connectionTimeoutMillis: 15000,
+    keepAlive: true,
+  });
+
+  pool.on("error", (err) => {
+    console.warn("[pg:pool] Unexpected error on idle client (evicting):", err.message);
+  });
+
+  globalForPrisma.pool = pool;
+  return pool;
+}
+
+const createPrismaClient = () => {
+  const pool = getPool();
+  const adapter = new PrismaPg(pool);
+  return new PrismaClient({ adapter });
+};
+
+export const prisma = globalForPrisma.prisma ?? createPrismaClient();
+
+// In serverless / edge / dev, keep singleton instance
+globalForPrisma.prisma = prisma;
+
+/**
+ * Executes a database query with automatic retry for transient connection errors
+ * (e.g. cloud database waking up, server-side idle socket closure, P1017 ConnectionClosed).
+ */
+export async function withDbRetry<T>(fn: () => Promise<T>, retries = 2): Promise<T> {
+  try {
+    return await fn();
+  } catch (err: any) {
+    const isConnError =
+      err?.code === "P1017" ||
+      err?.code === "P1001" ||
+      err?.code === "P1002" ||
+      err?.message?.includes("closed the connection") ||
+      err?.message?.includes("ConnectionClosed") ||
+      err?.message?.includes("timeout exceeded") ||
+      err?.message?.includes("ECONNRESET");
+
+    if (retries > 0 && isConnError) {
+      console.warn(`[Prisma DB Retry] Transient connection error detected (${err.message}). Retrying in 250ms...`);
+      await new Promise((resolve) => setTimeout(resolve, 250));
+      return withDbRetry(fn, retries - 1);
+    }
+    throw err;
+  }
+}
+
+export default prisma;
