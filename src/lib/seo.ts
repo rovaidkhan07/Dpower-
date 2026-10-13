@@ -1,7 +1,10 @@
-export const SITE_URL = "https://kharidly.pk";
-export const SITE_TITLE = "Kharidly | Electronics & Tech Gadgets in Pakistan";
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
+export const SITE_TITLE = "DK Power | Wholesale Mobile Accessories in Pakistan";
 export const SITE_DESCRIPTION =
-  "Shop tech gadgets and mobile accessories in Pakistan at Kharidly. Browse chargers, cables, power banks and audio accessories with Cash on Delivery.";
+  "DK Power supplies wholesale mobile accessories and power products for retailers and resellers in Pakistan, including chargers, cables, power banks and audio accessories.";
 
 export function siteUrl(path: string): string {
   return new URL(path, SITE_URL).toString();

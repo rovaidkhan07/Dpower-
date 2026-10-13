@@ -19,65 +19,44 @@ export const metadata: Metadata = {
   robots: isPreviewDeployment() ? { index: false, follow: false } : { index: true, follow: true },
   openGraph: {
     type: "website",
-    siteName: "Kharidly",
+    siteName: "DK Power",
     locale: "en_PK",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
   },
   twitter: { card: "summary", title: SITE_TITLE, description: SITE_DESCRIPTION },
-  title: {
-    default: SITE_TITLE,
-    template: "%s | Kharidly",
-  },
-  description:
-    SITE_DESCRIPTION,
-  icons: {
-    icon: "/logo/favicon.png",
-  },
+  title: { default: SITE_TITLE, template: "%s | DK Power" },
+  description: SITE_DESCRIPTION,
+  icons: { icon: "/logo/dk-power.svg" },
   keywords: [
-    "mobile accessories pakistan",
-    "fast charger karachi",
-    "anker charger",
-    "baseus 65w gan",
-    "type c cable",
-    "power bank",
-    "wireless earbuds",
-    "cash on delivery accessories",
+    "wholesale mobile accessories pakistan",
+    "mobile accessories distributor pakistan",
+    "wholesale chargers pakistan",
+    "wholesale power banks pakistan",
+    "bulk type c cables",
+    "wholesale earbuds pakistan",
+    "retailer mobile accessories supplier",
   ],
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${plusJakartaSans.variable} h-full antialiased`}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={`${plusJakartaSans.variable} h-full antialiased`} suppressHydrationWarning>
       <head>
         <Script
           id="theme-initializer"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('kharidly-theme');if(t==='dark'){document.documentElement.classList.add('dark')}}catch(e){}})()`,
+            __html: `(function(){try{var t=localStorage.getItem('dk-power-theme');if(t==='dark'){document.documentElement.classList.add('dark')}}catch(e){}})()`,
           }}
         />
       </head>
       <body className="min-h-full flex flex-col font-sans">
-        <Suspense fallback={null}>
-          <NavigationProgress />
-        </Suspense>
-        <Suspense fallback={null}>
-          <PixelScripts />
-        </Suspense>
+        <Suspense fallback={null}><NavigationProgress /></Suspense>
+        <Suspense fallback={null}><PixelScripts /></Suspense>
         {children}
         <Analytics />
       </body>
     </html>
   );
 }
-
-

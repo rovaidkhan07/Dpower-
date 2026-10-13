@@ -1,72 +1,38 @@
 import React from "react";
-import { Package, Lightbulb, Smartphone, Truck } from "lucide-react";
+import { Boxes, ClipboardCheck, PackageCheck, Truck } from "lucide-react";
 
 export function TrustFeatures() {
   const features = [
-    {
-      icon: Package,
-      title: "Explore Products",
-      description: "Browse the latest electronic gadgets and innovative devices.",
-    },
-    {
-      icon: Lightbulb,
-      title: "Choose Your Favorites",
-      description: "Compare specifications features & prices to select the perfect device easily.",
-    },
-    {
-      icon: Smartphone,
-      title: "Secure Checkout",
-      description: "Complete your order safely with multiple payment options & secure checkout.",
-    },
-    {
-      icon: Truck,
-      title: "Fast Delivery",
-      description: "Receive electronics quickly with trusted shipping and tracking.",
-    },
+    { icon: Boxes, title: "Browse Wholesale Range", description: "Explore mobile accessories by category, brand and SKU." },
+    { icon: ClipboardCheck, title: "Confirm Your Order", description: "Build a bulk order and confirm quantities before checkout." },
+    { icon: PackageCheck, title: "Stock & Order Control", description: "Orders use live inventory controls to reduce overselling risk." },
+    { icon: Truck, title: "Dispatch & Tracking", description: "Follow confirmed orders through the available tracking flow." },
   ];
 
   return (
-    <section className="py-10 sm:py-20 bg-secondary dark:bg-[#1C2028] font-sans">
-      <div className="max-w-[1280px] mx-auto px-5 lg:px-8">
-        
-        {/* Header */}
-        <div className="text-center mb-8 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white dark:bg-[#15181E] rounded-full text-xs font-bold text-gray-800 dark:text-[#D5D9E0] shadow-sm mb-6 border border-gray-100 dark:border-[#262C37]">
-            <span className="w-1.5 h-1.5 rounded-full bg-black dark:bg-white"></span>
-            Our Process
+    <section className="bg-secondary py-12 font-sans dark:bg-[#1b1b1d] sm:py-18">
+      <div className="mx-auto max-w-[1280px] px-5 lg:px-8">
+        <div className="mx-auto mb-9 max-w-3xl text-center">
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-red-100 bg-white px-3 py-1 text-xs font-bold text-primary shadow-sm dark:border-red-950 dark:bg-[#151516]">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" /> Wholesale Ordering
           </div>
-          <h2 className="text-[32px] md:text-[40px] font-bold text-gray-900 dark:text-white tracking-tight leading-none mb-4">
-            Simple Process for Smart Shopping
-          </h2>
-          <p className="text-sm text-gray-500 dark:text-[#8A919C] font-medium">
-            Enjoy a smooth and secure shopping experience with simple steps designed to help you discover, order, and receive your favorite electronics quickly.
-          </p>
+          <h2 className="mb-4 text-3xl font-black tracking-tight text-foreground md:text-4xl">Built for Repeat Trade Orders</h2>
+          <p className="text-sm font-medium leading-relaxed text-muted-foreground sm:text-base">A straightforward catalog and ordering flow for retailers and resellers who need dependable product and inventory visibility.</p>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 lg:gap-12 text-center">
-          {features.map((f, idx) => {
-            const Icon = f.icon;
+        <div className="grid grid-cols-1 gap-5 text-center sm:grid-cols-2 lg:grid-cols-4">
+          {features.map((feature) => {
+            const Icon = feature.icon;
             return (
-              <div key={idx} className="flex flex-col items-center">
-                <div className="w-[88px] h-[88px] rounded-full bg-white dark:bg-[#15181E] flex items-center justify-center mb-3 sm:mb-6 shadow-sm border border-gray-100 dark:border-[#262C37]">
-                  <Icon className="w-8 h-8 text-gray-700 dark:text-[#B8BEC8]" strokeWidth={1.5} />
-                </div>
-                <h3 className="text-[16px] font-bold text-gray-900 dark:text-[#E9EBEF] mb-3">
-                  {f.title}
-                </h3>
-                <p className="text-sm text-gray-500 dark:text-[#8A919C] font-medium leading-relaxed max-w-[240px]">
-                  {f.description}
-                </p>
+              <div key={feature.title} className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50 text-primary dark:bg-red-950/30"><Icon className="h-7 w-7" strokeWidth={1.8} /></div>
+                <h3 className="mb-2 text-base font-extrabold text-foreground">{feature.title}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
               </div>
             );
           })}
         </div>
-
       </div>
     </section>
   );
 }
-
-
-
