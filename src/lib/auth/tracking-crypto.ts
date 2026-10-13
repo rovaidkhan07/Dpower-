@@ -24,10 +24,9 @@ function configuredKeys(): Record<string, Buffer> {
 }
 
 function legacyKey(): Buffer | null {
-  // Retain the old JWT secret here before rotating JWT_SECRET.
   const secret = process.env.TRACKING_LEGACY_SECRET || process.env.JWT_SECRET;
   return secret
-    ? crypto.createHash("sha256").update(`kharidly:tracking-token:v1:${secret}`).digest()
+    ? crypto.createHash("sha256").update(`dk-power:tracking-token:v1:${secret}`).digest()
     : null;
 }
 
@@ -37,7 +36,6 @@ export function encryptTrackingToken(token: string): string {
   if (!version && Object.keys(keys).length > 0) {
     throw new Error("TRACKING_ENCRYPTION_ACTIVE_VERSION must select a configured key");
   }
-  // Compatibility during rollout; configure a dedicated key before rotating JWT_SECRET.
   const key = version ? keys[version] : legacyKey();
   if (!key) throw new Error("Tracking encryption key is missing");
   const iv = crypto.randomBytes(12);
