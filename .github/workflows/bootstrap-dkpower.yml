@@ -22,10 +22,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          rm -rf /tmp/kharidly
           git clone --depth 1 --branch main https://github.com/rovaidkhan07/my-store.git /tmp/kharidly
           rsync -a --delete \
             --exclude '.git' \
-            --exclude '.github/workflows/bootstrap-dkpower.yml' \
+            --exclude '.env' \
+            --exclude '.env.local' \
+            --exclude '.env.production' \
+            --exclude '.env.development' \
+            --exclude '.vercel/' \
             /tmp/kharidly/ ./
           rm -f .dkpower-init
           rm -f .github/workflows/bootstrap-dkpower.yml
@@ -42,4 +47,6 @@ jobs:
             exit 0
           fi
           git commit -m 'chore: bootstrap DK Power from Kharidly production baseline [skip ci]'
-          git push origin HEAD:main
+          git fetch origin main
+          REMOTE_SHA="$(git rev-parse origin/main)"
+          git push --force-with-lease=refs/heads/main:${REMOTE_SHA} origin HEAD:main
