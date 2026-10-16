@@ -280,8 +280,8 @@ export default function CustomerAccountPage() {
             ) : (
               orders.map((order) => {
                 const currentStepIdx = pipelineSteps.indexOf(order.orderStatus);
-                const orderWhatsAppUrl = `https://wa.me/923001234567?text=${encodeURIComponent(
-                  `Assalam-o-Alaikum Kharidly,\nI need an update on my Order *${order.orderNumber}* (Total: ${formatPrice(order.total)}).\nThank you!`
+                const orderWhatsAppUrl = `https://wa.me/923065292187?text=${encodeURIComponent(
+                  `Assalam-o-Alaikum DK Power,\nI need an update on my Order *${order.orderNumber}* (Total: ${formatPrice(order.total)}).\nThank you!`
                 )}`;
 
                 return (

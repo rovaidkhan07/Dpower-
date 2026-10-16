@@ -128,7 +128,7 @@ export default function AdminOrderDetailPage({
 
   const cleanPhone = order.customerPhone.replace(/\D/g, "");
   const customerWhatsAppUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(
-    `Assalam-o-Alaikum ${order.customerName},\nThis is Kharidly regarding your Order *${order.orderNumber}* (Total: ${formatPrice(order.total)}).\nYour current order status is: *${order.orderStatus.toUpperCase()}*.\nThank you for shopping with us!`
+    `Assalam-o-Alaikum ${order.customerName},\nThis is DK Power regarding your Order *${order.orderNumber}* (Total: ${formatPrice(order.total)}).\nYour current order status is: *${order.orderStatus.toUpperCase()}*.\nThank you for shopping with us!`
   )}`;
 
   const pipelineSteps = ["pending", "confirmed", "processing", "shipped", "delivered"];

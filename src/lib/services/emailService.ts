@@ -307,11 +307,11 @@ export async function sendVerificationEmail(toEmail: string, otpCode: string, cu
 
       <!-- Footer -->
       <div class="footer-section">
-        <a href="https://wa.me/923005879869" class="whatsapp-btn">
+        <a href="https://wa.me/923065292187" class="whatsapp-btn">
           Need Help? Chat on WhatsApp
         </a>
         <p class="legal-text">
-          &copy; 2026 Kharidly Technologies Pakistan. All rights reserved.<br>
+          &copy; 2026 DK Power Pakistan. All rights reserved.<br>
           Karachi, Lahore, Islamabad &amp; Nationwide Delivery.
         </p>
       </div>
@@ -512,11 +512,11 @@ export async function sendPasswordResetEmail(toEmail: string, otpCode: string) {
 
       <!-- Footer -->
       <div class="footer-section">
-        <a href="https://wa.me/923005879869" class="whatsapp-btn">
+        <a href="https://wa.me/923065292187" class="whatsapp-btn">
           Need Help? Chat on WhatsApp
         </a>
         <p class="legal-text">
-          &copy; 2026 Kharidly Technologies Pakistan. All rights reserved.<br>
+          &copy; 2026 DK Power Pakistan. All rights reserved.<br>
           Karachi, Lahore, Islamabad &amp; Nationwide Delivery.
         </p>
       </div>

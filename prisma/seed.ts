@@ -59,8 +59,8 @@ async function main() {
   const settings = [
     { key: "store_name", value: "DK Power" },
     { key: "store_tagline", value: "Wholesale Mobile Accessories & Power Solutions" },
-    { key: "store_phone", value: "+92 300 1234567" },
-    { key: "store_whatsapp", value: "923005879869" },
+    { key: "store_phone", value: "+92 306 5292187" },
+    { key: "store_whatsapp", value: "923065292187" },
     { key: "store_email", value: "support@dkpower.pk" },
     { key: "store_address", value: "Shop 14, Hafeez Center / Techno City, Karachi, Pakistan" },
     { key: "currency", value: "PKR" },
