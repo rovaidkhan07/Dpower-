@@ -2,7 +2,7 @@ import React from "react";
 import { CheckoutView } from "@/components/checkout/checkout-view";
 
 export const metadata = {
-  title: "Secure Checkout | Kharidly",
+  title: "Secure Checkout | DK Power",
   description: "Complete your order with Cash on Delivery or Bank Transfer.",
 };
 

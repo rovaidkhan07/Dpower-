@@ -11,9 +11,9 @@ import {
 } from "@/lib/config/store";
 
 export const metadata = {
-  title: "Contact Us | Kharidly",
+  title: "Contact Us | DK Power",
   description:
-    "Contact Kharidly — Pakistan's premium tech store. Reach us on WhatsApp, email, or phone for orders and support.",
+    "Contact DK Power — Pakistan's high-performance tech brand. Reach us on WhatsApp, email, or phone for orders, bulk wholesale, and support.",
 };
 
 export default function ContactPage() {
@@ -22,29 +22,29 @@ export default function ContactPage() {
   const channels = [
     {
       icon: MessageCircle,
-      title: "WhatsApp Support",
-      text: "Fastest response — a real human, not a bot.",
+      title: "WhatsApp Trade & Support",
+      text: "Fastest response — dedicated technical and sales advisors.",
       value: STORE_CONFIG.phone,
       href: whatsappUrl,
-      cta: "Chat now",
+      cta: "Chat on WhatsApp",
       external: true,
     },
     {
       icon: Mail,
-      title: "Email",
-      text: "For order issues, returns, and business inquiries.",
+      title: "Official Email",
+      text: "For bulk distributor quotes, warranty claims, and corporate inquiries.",
       value: STORE_CONFIG.email,
       href: `mailto:${STORE_CONFIG.email}`,
-      cta: "Send email",
+      cta: "Send Email",
       external: false,
     },
     {
       icon: Phone,
-      title: "Phone",
-      text: "Call us during working hours.",
+      title: "Phone Support",
+      text: "Direct line during business hours.",
       value: STORE_CONFIG.phone,
       href: `tel:${STORE_CONFIG.phone.replace(/\s/g, "")}`,
-      cta: "Call now",
+      cta: "Call Now",
       external: false,
     },
   ];
@@ -52,17 +52,16 @@ export default function ContactPage() {
   return (
     <div className="bg-slate-50 dark:bg-[#0F1217] min-h-screen">
       {/* Hero */}
-      <div className="bg-gray-950 text-white">
+      <div className="bg-[#111111] text-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-14 sm:py-20 text-center">
-          <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase text-[#fb923c] mb-4">
+          <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase text-primary mb-4">
             We&apos;re Here To Help
           </span>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-            Contact <span className="text-primary">Us</span>
+            Contact <span className="text-primary">DK Power</span>
           </h1>
           <p className="mt-4 text-sm sm:text-base text-slate-300 max-w-2xl mx-auto">
-            Questions about an order, a product, or a return? Talk to a real
-            human — we actually reply.
+            Questions about an order, wholesale pricing, or warranty replacement? Reach out to our team.
           </p>
         </div>
       </div>
@@ -75,7 +74,7 @@ export default function ContactPage() {
               key={ch.title}
               className="bg-white dark:bg-[#15181E] rounded-3xl border border-slate-200 dark:border-[#262C37] p-6 shadow-sm flex flex-col"
             >
-              <div className="w-11 h-11 rounded-2xl bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400 flex items-center justify-center mb-4">
+              <div className="w-11 h-11 rounded-2xl bg-red-50 dark:bg-red-950/20 text-primary flex items-center justify-center mb-4">
                 <ch.icon className="w-5 h-5" />
               </div>
               <h3 className="font-extrabold text-slate-900 dark:text-white">{ch.title}</h3>
@@ -100,23 +99,23 @@ export default function ContactPage() {
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="bg-white dark:bg-[#15181E] rounded-3xl border border-slate-200 dark:border-[#262C37] p-6 shadow-sm">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-2xl bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-2xl bg-red-50 dark:bg-red-950/20 text-primary flex items-center justify-center">
                 <Clock className="w-5 h-5" />
               </div>
-              <h3 className="font-extrabold text-slate-900 dark:text-white">Working hours</h3>
+              <h3 className="font-extrabold text-slate-900 dark:text-white">Business Hours</h3>
             </div>
             <p className="text-sm text-slate-600 dark:text-[#8A919C] leading-relaxed">
-              Monday – Saturday, 10 AM – 8 PM (PKT).
+              Monday – Saturday, 10:00 AM – 8:00 PM (PKT).
               <br />
-              WhatsApp messages are usually answered within a few hours.
+              WhatsApp inquiries are answered within 1-2 hours.
             </p>
           </div>
           <div className="bg-white dark:bg-[#15181E] rounded-3xl border border-slate-200 dark:border-[#262C37] p-6 shadow-sm">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-2xl bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-2xl bg-red-50 dark:bg-red-950/20 text-primary flex items-center justify-center">
                 <MapPin className="w-5 h-5" />
               </div>
-              <h3 className="font-extrabold text-slate-900 dark:text-white">Store address</h3>
+              <h3 className="font-extrabold text-slate-900 dark:text-white">Central Hub</h3>
             </div>
             <p className="text-sm text-slate-600 dark:text-[#8A919C] leading-relaxed">
               {STORE_CONFIG.address}
@@ -127,16 +126,16 @@ export default function ContactPage() {
         {/* Big WhatsApp CTA */}
         <div className="bg-primary rounded-3xl p-8 sm:p-10 text-center text-white">
           <h2 className="text-2xl font-extrabold">
-            The fastest way to reach us
+            Quick Inquiries &amp; Bulk Orders
           </h2>
-          <p className="mt-2 text-sm text-orange-50">
-            One tap — tell us your order number and what you need.
+          <p className="mt-2 text-sm text-red-100">
+            One tap — chat directly with our trade team on WhatsApp.
           </p>
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center justify-center gap-2 bg-white text-accent font-bold px-8 py-3 rounded-full text-sm hover:bg-orange-50 transition-colors"
+            className="mt-6 inline-flex items-center justify-center gap-2 bg-white text-primary font-bold px-8 py-3 rounded-full text-sm hover:bg-slate-100 transition-colors"
           >
             <MessageCircle className="w-4 h-4" /> Open WhatsApp Chat
           </a>
@@ -145,4 +144,3 @@ export default function ContactPage() {
     </div>
   );
 }
-

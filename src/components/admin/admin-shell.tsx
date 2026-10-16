@@ -81,13 +81,8 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           </button>
 
           <Link href="/admin" className="flex items-center gap-2">
-            <img src="/logo/favicon.png" alt="K" className="w-8 h-8" />
-            <div className="flex flex-col">
-              <span className="font-black text-sm text-gray-950 leading-none">Kharid<span className="text-[#FF6B00]">ly</span></span>
-              <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">
-                Admin
-              </span>
-            </div>
+            <img src="/logo/dk-power.png" alt="DK Power" className="h-8 w-auto object-contain" />
+            <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mt-0.5 ml-1">Admin</span>
           </Link>
         </div>
 
@@ -119,17 +114,11 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
         <div className="flex flex-col h-full overflow-y-auto">
           {/* Brand Logo Header */}
           <div className="p-5 sm:p-6 border-b border-gray-200 flex items-center justify-between">
-            <Link href="/admin" onClick={() => setIsSidebarOpen(false)} className="flex items-center gap-3 group">
-              <div className="relative">
-                <img src="/logo/favicon.png" alt="K" className="w-10 h-10 group-hover:scale-105 transition-transform" />
-                <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#FF6B00] ring-2 ring-white" />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-black text-gray-950 text-base tracking-tight leading-none">Kharid<span className="text-[#FF6B00]">ly</span></span>
-                <span className="text-[10px] text-gray-500 font-bold uppercase tracking-widest flex items-center gap-1 mt-1">
-                  <Sparkles className="w-2.5 h-2.5 text-accent" /> Admin Suite
-                </span>
-              </div>
+            <Link href="/admin" onClick={() => setIsSidebarOpen(false)} className="flex flex-col items-start gap-1 group">
+              <img src="/logo/dk-power.png" alt="DK Power" className="h-9 w-auto object-contain group-hover:scale-105 transition-transform" />
+              <span className="text-[10px] text-gray-500 font-bold uppercase tracking-widest flex items-center gap-1 mt-1">
+                <Sparkles className="w-2.5 h-2.5 text-accent" /> Admin Suite
+              </span>
             </Link>
 
             {/* Mobile Close Button */}

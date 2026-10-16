@@ -16,7 +16,17 @@ interface SuggestionProduct {
   price: number;
   salePrice?: number | null;
   imageUrl?: string | null;
-  images?: string[];
+  images?: Array<string | { imageUrl?: string }>;
+}
+
+function getSuggestionImageUrl(p: SuggestionProduct): string {
+  if (p.imageUrl) return p.imageUrl;
+  if (p.images && p.images.length > 0) {
+    const first = p.images[0];
+    if (typeof first === "string") return first;
+    if (first && typeof first === "object" && first.imageUrl) return first.imageUrl;
+  }
+  return "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=200";
 }
 
 function DiscountBadge({ unitPrice, regularPrice }: { unitPrice: number; regularPrice: number }) {
@@ -62,7 +72,7 @@ export function CartDrawer() {
         slug: p.slug,
         sku: p.slug,
         brand: "",
-        imageUrl: p.imageUrl || (p.images && p.images[0]) || "",
+        imageUrl: getSuggestionImageUrl(p),
         unitPrice: p.salePrice || p.price,
         regularPrice: p.price,
         quantity: 1,
@@ -114,7 +124,7 @@ export function CartDrawer() {
           </div>
 
           {/* Body */}
-          <div className="flex-1 overflow-y-auto">
+          <div className="flex-1 overflow-y-auto pb-6">
             {items.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-center px-8 py-16">
                 <p className="text-base font-semibold text-gray-900 dark:text-gray-100">Your cart is empty</p>
@@ -206,7 +216,7 @@ export function CartDrawer() {
                         >
                           <div className="relative w-full h-[90px] rounded-lg bg-gray-50 dark:bg-[#15181E] overflow-hidden">
                             <Image
-                              src={p.imageUrl || (p.images && p.images[0]) || "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=200"}
+                              src={getSuggestionImageUrl(p)}
                               alt={p.name}
                               fill
                               sizes="140px"

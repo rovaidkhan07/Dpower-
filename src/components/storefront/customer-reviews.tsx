@@ -52,7 +52,7 @@ export function CustomerReviews() {
               Social Proof &amp; Reviews
             </span>
             <h2 className="text-3xl sm:text-4xl font-black capitalize tracking-tight text-slate-950 dark:text-white">
-              Customer Voices on <br className="hidden sm:inline" />Kharidly
+              Customer Voices on <br className="hidden sm:inline" />DK Power
             </h2>
           </div>
 

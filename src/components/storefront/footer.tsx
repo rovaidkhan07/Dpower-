@@ -28,7 +28,7 @@ export function Footer() {
         <div className="mx-auto max-w-[1280px] px-5 lg:px-8">
           <div className="mb-12 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
             <div>
-              <Link href="/" className="inline-flex rounded-xl bg-white p-2"><Image src="/logo/dk-power.svg" alt="DK Power" width={180} height={48} className="h-11 w-auto" /></Link>
+              <Link href="/" className="inline-flex items-center transition-transform hover:scale-105" aria-label="DK Power home"><Image src="/logo/dk-power.png" alt="DK Power" width={190} height={50} className="h-11 w-auto object-contain drop-shadow-md" /></Link>
               <p className="mt-5 max-w-xs text-sm leading-relaxed text-zinc-400">Wholesale mobile accessories and power products for retailers, resellers and trade buyers in Pakistan.</p>
             </div>
 

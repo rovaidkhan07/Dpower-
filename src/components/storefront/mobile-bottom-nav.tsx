@@ -2,7 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import { Home, Grid, ShoppingCart, User, MessageCircle } from "lucide-react";
+import { Home, Grid, ShoppingCart, User } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
 import { useCart } from "@/hooks/use-cart";
 import { usePathname } from "next/navigation";
 import { buildWhatsAppGeneralSupportUrl } from "@/lib/config/store";
@@ -13,37 +14,77 @@ export function MobileBottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav aria-label="Mobile navigation" className="lg:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-[#15181E] border-t border-gray-200 dark:border-[#262C37] z-50 pb-[env(safe-area-inset-bottom)]">
-      <div className="flex justify-around items-center h-16">
-        <Link href="/" className={`flex flex-col items-center p-2 ${pathname === '/' ? 'text-[#FF6B00]' : 'text-gray-500 dark:text-[#8A919C]'}`}>
-          <Home className="w-6 h-6" />
-          <span className="text-[10px] font-medium mt-1">Home</span>
+    <nav
+      aria-label="Mobile navigation"
+      className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-200/80 z-50 pb-[env(safe-area-inset-bottom)] shadow-xs"
+    >
+      <div className="flex justify-around items-center h-14">
+        <Link
+          href="/"
+          className={`flex flex-col items-center justify-center py-1 px-3 ${
+            pathname === "/"
+              ? "text-slate-950 font-semibold"
+              : "text-slate-500 hover:text-slate-900"
+          }`}
+        >
+          <Home className="size-4" />
+          <span className="text-[10px] mt-1">Home</span>
         </Link>
-        <Link href="/shop" className={`flex flex-col items-center p-2 ${pathname === '/shop' ? 'text-[#FF6B00]' : 'text-gray-500 dark:text-[#8A919C]'}`}>
-          <Grid className="w-6 h-6" />
-          <span className="text-[10px] font-medium mt-1">Shop</span>
+
+        <Link
+          href="/shop"
+          className={`flex flex-col items-center justify-center py-1 px-3 ${
+            pathname === "/shop"
+              ? "text-slate-950 font-semibold"
+              : "text-slate-500 hover:text-slate-900"
+          }`}
+        >
+          <Grid className="size-4" />
+          <span className="text-[10px] mt-1">Shop</span>
         </Link>
-        <Link href="/cart" className={`flex flex-col items-center p-2 relative ${pathname === '/cart' ? 'text-[#FF6B00]' : 'text-gray-500 dark:text-[#8A919C]'}`}>
+
+        <Link
+          href="/cart"
+          className={`flex flex-col items-center justify-center py-1 px-3 relative ${
+            pathname === "/cart"
+              ? "text-slate-950 font-semibold"
+              : "text-slate-500 hover:text-slate-900"
+          }`}
+        >
           <div className="relative">
-            <ShoppingCart className="w-6 h-6" />
+            <ShoppingCart className="size-4" />
             {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1.5 bg-[#EF4444] text-white text-[9px] min-w-4 h-4 px-1 rounded-full flex items-center justify-center font-bold border border-white dark:border-[#15181E]">
+              <span className="absolute -top-1.5 -right-2.5 bg-emerald-500 text-white text-[9px] size-4 rounded-full flex items-center justify-center font-bold">
                 {cartCount}
               </span>
             )}
           </div>
-          <span className="text-[10px] font-medium mt-1">Cart</span>
+          <span className="text-[10px] mt-1">Cart</span>
         </Link>
-        <Link href="/account" className={`flex flex-col items-center p-2 ${pathname === '/account' ? 'text-[#FF6B00]' : 'text-gray-500 dark:text-[#8A919C]'}`}>
-          <User className="w-6 h-6" />
-          <span className="text-[10px] font-medium mt-1">Profile</span>
+
+        <Link
+          href="/account"
+          className={`flex flex-col items-center justify-center py-1 px-3 ${
+            pathname === "/account"
+              ? "text-slate-950 font-semibold"
+              : "text-slate-500 hover:text-slate-900"
+          }`}
+        >
+          <User className="size-4" />
+          <span className="text-[10px] mt-1">Account</span>
         </Link>
-        <a href={buildWhatsAppGeneralSupportUrl()} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp (opens in a new tab)" className="flex flex-col items-center p-2 text-[#25D366] rounded-lg focus-visible:outline-2 focus-visible:outline-accent">
-          <MessageCircle className="w-6 h-6" aria-hidden="true" />
-          <span className="text-[10px] font-medium mt-1">Help</span>
+
+        <a
+          href={buildWhatsAppGeneralSupportUrl()}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat on WhatsApp"
+          className="flex flex-col items-center justify-center py-1 px-3 text-emerald-600"
+        >
+          <WhatsAppIcon className="size-4" aria-hidden="true" />
+          <span className="text-[10px] mt-1">WhatsApp</span>
         </a>
       </div>
     </nav>
   );
 }
-

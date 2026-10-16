@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary", title: SITE_TITLE, description: SITE_DESCRIPTION },
   title: { default: SITE_TITLE, template: "%s | DK Power" },
   description: SITE_DESCRIPTION,
-  icons: { icon: "/logo/dk-power.svg" },
+  icons: { icon: "/logo/favicon.png", shortcut: "/logo/favicon-32.png", apple: "/logo/favicon-192.png" },
   keywords: [
     "wholesale mobile accessories pakistan",
     "mobile accessories distributor pakistan",

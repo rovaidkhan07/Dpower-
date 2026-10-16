@@ -63,7 +63,7 @@ export default function AdminLoginPage() {
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center relative z-10 px-4">
         {/* Exact Storefront Brand Logo */}
         <Link href="/" className="inline-flex flex-col items-center gap-2 mb-6 group">
-          <img src="/logo/kharidly-logo.png" alt="Kharidly" className="h-12 w-auto object-contain group-hover:scale-105 transition-transform" />
+          <img src="/logo/dk-power.png" alt="DK Power" className="h-12 w-auto object-contain group-hover:scale-105 transition-transform drop-shadow-md" />
           <div className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1">
             <Sparkles className="w-2.5 h-2.5 text-accent" /> Admin Suite
           </div>

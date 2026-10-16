@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Category } from "@/generated/prisma/client";
 import { Button } from "@/components/ui/button";
-import { Filter, RotateCcw, Check, ChevronDown } from "lucide-react";
+import { Category } from "@/generated/prisma/client";
+import { Filter, Check, RotateCcw, ChevronDown } from "lucide-react";
 
 interface ProductFiltersProps {
   categories: Category[];
@@ -15,31 +15,31 @@ export function ProductFilters({ categories, brands }: ProductFiltersProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const currentCategory = searchParams.get("category") || "";
+  const currentCategory = searchParams.get("category");
   const currentBrand = searchParams.get("brand") || "";
-  const currentSort = searchParams.get("sort") || "featured";
-  const currentInStock = searchParams.get("inStock") === "true";
   const currentMinPrice = searchParams.get("minPrice") || "";
   const currentMaxPrice = searchParams.get("maxPrice") || "";
-  const currentSearch = searchParams.get("search") || "";
+  const currentSort = searchParams.get("sort") || "featured";
+  const currentInStock = searchParams.get("inStock") === "true";
 
   const [minPrice, setMinPrice] = useState(currentMinPrice);
   const [maxPrice, setMaxPrice] = useState(currentMaxPrice);
   const [isOpenMobile, setIsOpenMobile] = useState(false);
 
-  const applyFilters = (updates: Record<string, string | null | undefined>) => {
+  // Apply filters by pushing new query string
+  const applyFilters = (updates: Record<string, string | null>) => {
     const params = new URLSearchParams(searchParams.toString());
 
-    Object.entries(updates).forEach(([key, value]) => {
-      if (value === null || value === undefined || value === "") {
+    // Reset pagination to page 1 on filter changes
+    params.delete("page");
+
+    Object.entries(updates).forEach(([key, val]) => {
+      if (val === null || val === "" || val === undefined) {
         params.delete(key);
       } else {
-        params.set(key, value);
+        params.set(key, val);
       }
     });
-
-    // Reset page to 1 on filter change
-    params.delete("page");
 
     router.push(`/shop?${params.toString()}`);
   };
@@ -61,23 +61,22 @@ export function ProductFilters({ categories, brands }: ProductFiltersProps) {
   const hasActiveFilters = Boolean(
     currentCategory ||
       currentBrand ||
-      currentInStock ||
       currentMinPrice ||
       currentMaxPrice ||
-      currentSearch ||
+      currentInStock ||
       (currentSort && currentSort !== "featured")
   );
 
   return (
-    <div className="w-full">
-      {/* Mobile Filter Toggle Button Bar */}
-      <div className="lg:hidden flex items-center justify-between gap-2.5 mb-4">
+    <div className="w-full space-y-4">
+      {/* Mobile Filters Toggle Button & Trigger */}
+      <div className="lg:hidden flex items-center gap-2">
         <Button
           variant="outline"
           onClick={() => setIsOpenMobile(!isOpenMobile)}
           className="flex-1 flex items-center justify-center gap-2 h-11 rounded-xl border border-gray-200 dark:border-[#262C37] bg-white dark:bg-[#15181E] font-bold text-xs shadow-xs cursor-pointer"
         >
-          <Filter className="w-3.5 h-3.5 text-[#FF6B00]" />
+          <Filter className="w-3.5 h-3.5 text-primary" />
           <span>Filters {hasActiveFilters && "• (Active)"}</span>
           <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isOpenMobile ? "rotate-180" : ""}`} />
         </Button>
@@ -105,12 +104,12 @@ export function ProductFilters({ categories, brands }: ProductFiltersProps) {
         {/* Header with Clear Button */}
         <div className="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-[#262C37]">
           <h3 className="font-bold text-gray-900 dark:text-white text-xs uppercase tracking-wider flex items-center gap-2">
-            <Filter className="w-3.5 h-3.5 text-[#FF6B00]" /> Filter Products
+            <Filter className="w-3.5 h-3.5 text-primary" /> Filter Products
           </h3>
           {hasActiveFilters && (
             <button
               onClick={handleResetAll}
-              className="text-xs text-[#FF6B00] hover:underline font-bold flex items-center gap-1 cursor-pointer"
+              className="text-xs text-primary hover:underline font-bold flex items-center gap-1 cursor-pointer"
             >
               <RotateCcw className="w-3.5 h-3.5" /> Reset
             </button>
@@ -125,7 +124,7 @@ export function ProductFilters({ categories, brands }: ProductFiltersProps) {
           <select
             value={currentSort}
             onChange={(e) => applyFilters({ sort: e.target.value })}
-            className="w-full h-10 px-3 bg-[#F8F9FA] dark:bg-[#1C2028] border border-gray-200 dark:border-[#2A2F3A] rounded-xl text-xs font-semibold text-gray-900 dark:text-gray-100 outline-none focus:border-[#FF6B00] cursor-pointer"
+            className="w-full h-10 px-3 bg-[#F8F9FA] dark:bg-[#1C2028] border border-gray-200 dark:border-[#2A2F3A] rounded-xl text-xs font-semibold text-gray-900 dark:text-gray-100 outline-none focus:border-primary cursor-pointer"
           >
             <option value="featured">Featured Items</option>
             <option value="price-low-high">Price: Low to High</option>
@@ -145,7 +144,7 @@ export function ProductFilters({ categories, brands }: ProductFiltersProps) {
               onClick={() => applyFilters({ category: null })}
               className={`w-full text-left px-3 py-2 rounded-xl text-xs font-semibold transition-colors flex items-center justify-between cursor-pointer ${
                 !currentCategory
-                  ? "bg-[#FF6B00] text-white font-bold shadow-xs"
+                  ? "bg-primary text-white font-bold shadow-xs"
                   : "text-gray-700 dark:text-[#B8BEC8] hover:bg-[#F8F9FA] dark:hover:bg-[#1C2028]"
               }`}
             >
@@ -161,7 +160,7 @@ export function ProductFilters({ categories, brands }: ProductFiltersProps) {
                   onClick={() => applyFilters({ category: isSelected ? null : cat.slug })}
                   className={`w-full text-left px-3 py-2 rounded-xl text-xs font-semibold transition-colors flex items-center justify-between cursor-pointer ${
                     isSelected
-                      ? "bg-[#FF6B00] text-white font-bold shadow-xs"
+                      ? "bg-primary text-white font-bold shadow-xs"
                       : "text-gray-700 dark:text-[#B8BEC8] hover:bg-[#F8F9FA] dark:hover:bg-[#1C2028]"
                   }`}
                 >
@@ -188,7 +187,7 @@ export function ProductFilters({ categories, brands }: ProductFiltersProps) {
                     onClick={() => applyFilters({ brand: isSelected ? null : b })}
                     className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-all cursor-pointer ${
                       isSelected
-                        ? "bg-[#FF6B00] text-white border-[#FF6B00] shadow-xs"
+                        ? "bg-primary text-white border-primary shadow-xs"
                         : "bg-[#F8F9FA] dark:bg-[#1C2028] text-gray-700 dark:text-[#B8BEC8] border-gray-200 dark:border-[#2A2F3A] hover:bg-gray-100"
                     }`}
                   >
@@ -212,20 +211,20 @@ export function ProductFilters({ categories, brands }: ProductFiltersProps) {
                 placeholder="Min Rs."
                 value={minPrice}
                 onChange={(e) => setMinPrice(e.target.value)}
-                className="w-full h-10 px-3 text-xs bg-[#F8F9FA] dark:bg-[#1C2028] border border-gray-200 dark:border-[#2A2F3A] rounded-xl outline-none focus:border-[#FF6B00] font-mono"
+                className="w-full h-10 px-3 text-xs bg-[#F8F9FA] dark:bg-[#1C2028] border border-gray-200 dark:border-[#2A2F3A] rounded-xl outline-none focus:border-primary font-mono"
               />
               <input
                 type="number"
                 placeholder="Max Rs."
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(e.target.value)}
-                className="w-full h-10 px-3 text-xs bg-[#F8F9FA] dark:bg-[#1C2028] border border-gray-200 dark:border-[#2A2F3A] rounded-xl outline-none focus:border-[#FF6B00] font-mono"
+                className="w-full h-10 px-3 text-xs bg-[#F8F9FA] dark:bg-[#1C2028] border border-gray-200 dark:border-[#2A2F3A] rounded-xl outline-none focus:border-primary font-mono"
               />
             </div>
             <Button
               type="submit"
               size="sm"
-              className="w-full text-xs font-bold rounded-xl h-10 bg-[#FF6B00] hover:bg-[#E05E00] text-white cursor-pointer shadow-xs"
+              className="w-full text-xs font-bold rounded-xl h-10 bg-primary hover:bg-accent text-white cursor-pointer shadow-xs"
             >
               Apply Filter
             </Button>
@@ -239,8 +238,9 @@ export function ProductFilters({ categories, brands }: ProductFiltersProps) {
               type="checkbox"
               checked={currentInStock}
               onChange={(e) => applyFilters({ inStock: e.target.checked ? "true" : null })}
-              className="w-4 h-4 rounded text-[#FF6B00] border-gray-300 focus:ring-[#FF6B00] accent-[#FF6B00]"
-            />
+              className="w-4 h-4 rounded text-primary border-gray-300 focus:ring-primary accent-primary"
+            >
+            </input>
             <span>Show In-Stock Only</span>
           </label>
         </div>
@@ -248,5 +248,3 @@ export function ProductFilters({ categories, brands }: ProductFiltersProps) {
     </div>
   );
 }
-
-

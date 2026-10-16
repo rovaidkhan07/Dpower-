@@ -89,7 +89,7 @@ function LoginForm() {
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center relative z-10">
         <Link href="/" className="inline-flex items-center justify-center mb-6 group">
-          <img src="/logo/kharidly-logo.png" alt="Kharidly" className="h-12 w-auto object-contain group-hover:scale-105 transition-transform" />
+          <img src="/logo/dk-power.png" alt="DK Power" className="h-12 w-auto object-contain group-hover:scale-105 transition-transform drop-shadow-md" />
         </Link>
 
         <h1 className="text-2xl sm:text-3xl font-black text-slate-950 uppercase tracking-tight">

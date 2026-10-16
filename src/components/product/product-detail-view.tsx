@@ -344,7 +344,7 @@ export function ProductDetailView({ product, relatedProducts }: ProductDetailVie
                   onClick={handleBuyNow}
                   disabled={isOutOfStock || isAdding}
                   size="lg"
-                  className="w-full bg-secondary dark:bg-[#1C2028] border border-gray-200 hover:border-black text-black dark:text-white font-black rounded-sm h-12 text-sm shadow-xl shadow-orange-600/25"
+                  className="w-full bg-secondary dark:bg-[#1C2028] border border-gray-200 hover:border-black text-black dark:text-white font-black rounded-sm h-12 text-sm shadow-xl shadow-primary/20"
                 >
                   {isAdding ? (
                     <><Spinner /> Processing...</>
@@ -379,19 +379,19 @@ export function ProductDetailView({ product, relatedProducts }: ProductDetailVie
               {/* Trust Badges */}
               <div className="grid grid-cols-2 gap-3 pt-4 border-t border-slate-100 text-xs text-gray-600 dark:text-[#9AA1AD]">
                 <div className="flex items-center gap-2">
-                  <Truck className="w-4 h-4 text-orange-600 shrink-0" />
+                  <Truck className="w-4 h-4 text-primary shrink-0" />
                   <span>Nationwide COD Delivery</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-orange-600 shrink-0" />
+                  <ShieldCheck className="w-4 h-4 text-primary shrink-0" />
                   <span>100% Genuine Guaranteed</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <RotateCcw className="w-4 h-4 text-orange-600 shrink-0" />
+                  <RotateCcw className="w-4 h-4 text-primary shrink-0" />
                   <span>7-Day Replacement Policy</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-orange-600 shrink-0" />
+                  <Sparkles className="w-4 h-4 text-primary shrink-0" />
                   <span>Verified Safe Packaging</span>
                 </div>
               </div>
@@ -406,7 +406,7 @@ export function ProductDetailView({ product, relatedProducts }: ProductDetailVie
               onClick={() => setActiveTab("overview")}
               className={`pb-2 px-3 text-sm font-bold border-b-2 transition-colors cursor-pointer ${
                 activeTab === "overview"
-                  ? "border-orange-600 text-orange-600"
+                  ? "border-primary text-primary"
                   : "border-transparent text-gray-500 hover:text-gray-900 dark:text-[#E9EBEF]"
               }`}
             >
@@ -416,7 +416,7 @@ export function ProductDetailView({ product, relatedProducts }: ProductDetailVie
               onClick={() => setActiveTab("specs")}
               className={`pb-2 px-3 text-sm font-bold border-b-2 transition-colors cursor-pointer ${
                 activeTab === "specs"
-                  ? "border-orange-600 text-orange-600"
+                  ? "border-primary text-primary"
                   : "border-transparent text-gray-500 hover:text-gray-900 dark:text-[#E9EBEF]"
               }`}
             >
@@ -426,7 +426,7 @@ export function ProductDetailView({ product, relatedProducts }: ProductDetailVie
               onClick={() => setActiveTab("delivery")}
               className={`pb-2 px-3 text-sm font-bold border-b-2 transition-colors cursor-pointer ${
                 activeTab === "delivery"
-                  ? "border-orange-600 text-orange-600"
+                  ? "border-primary text-primary"
                   : "border-transparent text-gray-500 hover:text-gray-900 dark:text-[#E9EBEF]"
               }`}
             >
@@ -503,7 +503,7 @@ export function ProductDetailView({ product, relatedProducts }: ProductDetailVie
               </div>
               <Link
                 href="/shop"
-                className="text-xs font-bold text-orange-600 hover:text-orange-700 flex items-center gap-1"
+                className="text-xs font-bold text-primary hover:text-accent flex items-center gap-1"
               >
                 Explore All <ChevronRight className="w-3.5 h-3.5" />
               </Link>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { SITE_TITLE, SITE_DESCRIPTION } from "@/lib/seo";
 import React from "react";
 import { getFeaturedProducts, getProducts } from "@/lib/services/productService";
@@ -8,7 +8,7 @@ import { ACTIVE_CATEGORIES } from "@/lib/config/categories";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
-  openGraph: { type: "website", siteName: "Kharidly", title: SITE_TITLE, description: SITE_DESCRIPTION, url: "/" },
+  openGraph: { type: "website", siteName: "DK Power", title: SITE_TITLE, description: SITE_DESCRIPTION, url: "/" },
 };
 
 export const dynamic = "force-dynamic";
@@ -34,3 +34,4 @@ export default async function HomePage() {
     />
   );
 }
+

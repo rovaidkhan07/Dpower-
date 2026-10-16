@@ -1,59 +1,208 @@
-"use client";
+﻿"use client";
 
-import React from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Boxes, Building2 } from "lucide-react";
+
+interface HeroSlide {
+  id: string;
+  image: string;
+  alt: string;
+  href: string;
+  ariaLabel: string;
+}
+
+const SLIDES: HeroSlide[] = [
+  {
+    id: "fast-chargers",
+    image: "/banners/dk-power-fast-chargers-banner.jpg",
+    alt: "DK Power Fast Chargers – Wholesale Prices, Genuine Stock. 65W GaN Technology, Multi-Port, Bulk Available.",
+    href: "/shop?category=chargers",
+    ariaLabel: "Shop wholesale fast chargers at DK Power",
+  },
+  {
+    id: "cables",
+    image: "/banners/dk-power-cables-banner.jpg",
+    alt: "DK Power Charging Cables – Fast Data & Charging, Bulk Stock Ready. USB-C & Lightning, 120W Fast Charge.",
+    href: "/shop?category=cables",
+    ariaLabel: "Shop wholesale charging cables at DK Power",
+  },
+  {
+    id: "earbuds",
+    image: "/banners/dk-power-earbuds-banner.jpg",
+    alt: "DK Power Wireless Earbuds – True Wireless Sound, Wholesale Ready. Active Noise Cancelling, 40H Battery Life.",
+    href: "/shop?category=earbuds",
+    ariaLabel: "Shop wholesale wireless earbuds at DK Power",
+  },
+  {
+    id: "power-banks",
+    image: "/banners/dk-power-power-banks-banner.jpg",
+    alt: "DK Power Power Banks – Never Run Out, Wholesale Stock. 20,000mAh Capacity, 65W Output, Reseller Deals.",
+    href: "/shop?category=power-banks",
+    ariaLabel: "Shop wholesale power banks at DK Power",
+  },
+];
+
+const AUTO_PLAY_INTERVAL = 5500;
 
 export function HeroBanner() {
-  const reduceMotion = useReducedMotion();
+  const [current, setCurrent] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const prefersReducedMotion =
+    typeof window !== "undefined"
+      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      : false;
+
+  const goTo = useCallback(
+    (index: number) => {
+      if (isAnimating) return;
+      setIsAnimating(true);
+      setCurrent(index);
+      setTimeout(() => setIsAnimating(false), 500);
+    },
+    [isAnimating]
+  );
+
+  const goNext = useCallback(() => {
+    goTo((current + 1) % SLIDES.length);
+  }, [current, goTo]);
+
+  const goPrev = useCallback(() => {
+    goTo((current - 1 + SLIDES.length) % SLIDES.length);
+  }, [current, goTo]);
+
+  // Auto-play
+  useEffect(() => {
+    if (prefersReducedMotion || isHovered || isPaused) {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      return;
+    }
+    intervalRef.current = setInterval(goNext, AUTO_PLAY_INTERVAL);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [goNext, isHovered, isPaused, prefersReducedMotion]);
+
+  // Keyboard support
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") goPrev();
+      if (e.key === "ArrowRight") goNext();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [goNext, goPrev]);
+
+  // Swipe handlers
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+    setTouchEnd(null);
+  };
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const delta = touchStart - touchEnd;
+    if (Math.abs(delta) > 50) {
+      if (delta > 0) { goNext(); } else { goPrev(); }
+    }
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
+
+  const slide = SLIDES[current];
 
   return (
-    <section className="w-full border-b border-border/60 bg-gradient-to-br from-white via-red-50/50 to-white font-sans dark:from-background dark:via-red-950/10 dark:to-background">
-      <div className="mx-auto max-w-[1280px] px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
-        <div className="grid items-center gap-7 sm:grid-cols-2 lg:gap-12">
-          <div className="relative z-20 min-w-0">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-red-200 bg-white px-3 py-1.5 text-xs font-bold text-red-700 shadow-sm dark:border-red-900/60 dark:bg-[#151516] dark:text-red-300">
-              <span className="h-2 w-2 rounded-full bg-primary" />
-              Wholesale Mobile Accessories
+    <section
+      className="relative w-full bg-black font-sans"
+      aria-label="Promotional hero carousel"
+      aria-roledescription="carousel"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onFocus={() => setIsPaused(true)}
+      onBlur={() => setIsPaused(false)}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
+      {/* Main Slide — full-width clickable banner */}
+      <div className="relative w-full overflow-hidden rounded-none sm:rounded-2xl mx-auto max-w-[1280px] sm:mx-auto sm:px-4 sm:pt-4">
+        <div className="sm:rounded-2xl overflow-hidden">
+          <Link
+            href={slide.href}
+            aria-label={slide.ariaLabel}
+            tabIndex={0}
+            className="block w-full cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-[#d71920] focus-visible:ring-offset-2 focus-visible:rounded-2xl"
+          >
+            <div className="relative w-full" style={{ aspectRatio: "16/9" }}>
+              {SLIDES.map((s, idx) => (
+                <Image
+                  key={s.id}
+                  src={s.image}
+                  alt={s.alt}
+                  fill
+                  priority={idx === 0}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1280px) calc(100vw - 32px), 1280px"
+                  className="object-contain transition-opacity duration-500 ease-in-out"
+                  style={{ opacity: idx === current ? 1 : 0 }}
+                  draggable={false}
+                />
+              ))}
             </div>
-
-            <h1 className="mb-4 text-3xl font-black leading-[1.08] tracking-tight text-[#151515] sm:text-4xl lg:text-6xl dark:text-white">
-              Stock Your Store.<br /><span className="text-primary">Power Your Business.</span>
-            </h1>
-
-            <p className="mb-6 max-w-xl text-sm leading-relaxed text-zinc-600 sm:text-base lg:text-lg dark:text-zinc-300">
-              DK Power supplies chargers, cables, power banks, audio accessories and everyday mobile essentials for retailers, resellers and trade buyers across Pakistan.
-            </p>
-
-            <div className="flex flex-wrap gap-3">
-              <Link href="/shop" className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-accent active:scale-95">
-                Browse Wholesale Catalog <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full border-2 border-[#151515] bg-white px-5 py-3 text-sm font-bold text-[#151515] transition hover:bg-zinc-100 dark:border-white dark:bg-transparent dark:text-white dark:hover:bg-white/10">
-                Bulk Inquiry <Building2 className="h-4 w-4" />
-              </Link>
-            </div>
-
-            <div className="mt-7 flex flex-wrap gap-x-6 gap-y-2 text-xs font-semibold text-zinc-600 dark:text-zinc-300">
-              <span className="flex items-center gap-2"><Boxes className="h-4 w-4 text-primary" /> Trade-focused ordering</span>
-              <span className="flex items-center gap-2"><Boxes className="h-4 w-4 text-primary" /> Multi-category stock</span>
-            </div>
-          </div>
-
-          <div className="relative mx-auto flex aspect-[4/3] w-full max-w-[500px] items-center justify-center" aria-label="DK Power wholesale mobile accessories">
-            <div aria-hidden="true" className="absolute h-64 w-64 rounded-full bg-primary/15 blur-3xl sm:h-80 sm:w-80" />
-            <motion.div
-              animate={reduceMotion ? undefined : { y: [0, -6, 0, 6, 0], rotate: [-1, 1, -1] }}
-              transition={reduceMotion ? undefined : { duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              className="relative z-10 h-full w-full"
-            >
-              <Image src="/images/Hero-Image_bg_removed.png.png" alt="Wholesale mobile accessories available from DK Power" fill sizes="(max-width: 639px) 92vw, (max-width: 1023px) 45vw, 500px" className="object-contain drop-shadow-[0_18px_30px_rgba(0,0,0,0.16)]" priority />
-            </motion.div>
-          </div>
+          </Link>
         </div>
+      </div>
+
+      {/* Desktop Nav Arrows */}
+      <div className="hidden sm:block">
+        <button
+          onClick={(e) => { e.stopPropagation(); goPrev(); }}
+          aria-label="Previous slide"
+          className="absolute left-6 lg:left-8 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 rounded-full bg-black/50 hover:bg-black/75 text-white border border-white/20 backdrop-blur-sm transition-all duration-200 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+        <button
+          onClick={(e) => { e.stopPropagation(); goNext(); }}
+          aria-label="Next slide"
+          className="absolute right-6 lg:right-8 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 rounded-full bg-black/50 hover:bg-black/75 text-white border border-white/20 backdrop-blur-sm transition-all duration-200 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Slide Indicators */}
+      <div
+        role="tablist"
+        aria-label="Slide indicators"
+        className="flex items-center justify-center gap-1.5 pt-3 pb-1 sm:pt-3 sm:pb-2"
+      >
+        {SLIDES.map((s, idx) => (
+          <button
+            key={s.id}
+            role="tab"
+            aria-selected={idx === current}
+            aria-label={`Go to slide ${idx + 1}: ${s.id}`}
+            onClick={() => goTo(idx)}
+            className={`h-1.5 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d71920] ${
+              idx === current
+                ? "w-6 bg-[#d71920]"
+                : "w-1.5 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400"
+            }`}
+          />
+        ))}
       </div>
     </section>
   );
 }
+

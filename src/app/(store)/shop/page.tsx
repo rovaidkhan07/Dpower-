@@ -41,9 +41,9 @@ export async function generateMetadata({ searchParams }: ShopPageProps): Promise
   const filtered = allowed.some((key) => key !== "page" && Boolean(params[key]));
   return {
     title: page > 1 ? `Shop Tech Gadgets — Page ${page}` : "Shop Mobile Accessories",
-    description: "Browse chargers, charging cables, power banks and earbuds at Kharidly in Pakistan.",
+    description: "Browse chargers, charging cables, power banks and earbuds at DK Power in Pakistan.",
     alternates: { canonical: path },
-    openGraph: { type: "website", siteName: "Kharidly", url: path },
+    openGraph: { type: "website", siteName: "DK Power", url: path },
     ...(filtered ? { robots: { index: false, follow: true } } : {}),
   };
 }
@@ -103,7 +103,7 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
             {selectedCategoryObj && (
               <>
                 <ChevronRightIcon className="w-3.5 h-3.5" />
-                <span className="text-[#FF6B00] font-bold">{selectedCategoryObj.name}</span>
+                <span className="text-primary font-bold">{selectedCategoryObj.name}</span>
               </>
             )}
           </div>
@@ -137,7 +137,7 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
                   href={`/shop?category=${encodeURIComponent(cat.slug)}`}
                   className={`px-3.5 py-1.5 rounded-full text-xs font-semibold shrink-0 transition-all ${
                     isActive
-                      ? "bg-[#FF6B00] text-white shadow-xs"
+                      ? "bg-primary text-white shadow-xs"
                       : "bg-gray-100 dark:bg-[#1C2028] text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-[#252A36]"
                   }`}
                 >
@@ -153,7 +153,7 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
         {search && (
           <div className="flex items-center justify-between gap-4 bg-white dark:bg-[#15181E] border border-gray-200 dark:border-[#262C37] rounded-xl px-4 py-2 text-xs font-semibold text-gray-800 dark:text-gray-200 shadow-xs">
             <span>Search results for: <strong className="text-foreground">&ldquo;{search}&rdquo;</strong></span>
-            <Link href="/shop" className="text-[#FF6B00] hover:underline font-bold">Clear search</Link>
+            <Link href="/shop" className="text-primary hover:underline font-bold">Clear search</Link>
           </div>
         )}
 
