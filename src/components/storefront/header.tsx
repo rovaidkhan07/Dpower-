@@ -348,7 +348,7 @@ export function Header() {
       </header>
 
       {/* Spacer to prevent layout shift below fixed header */}
-      <div className="h-[148px] sm:h-[156px] lg:h-[188px] shrink-0" aria-hidden="true" />
+      <div className="h-[130px] sm:h-[142px] lg:h-[150px] shrink-0" aria-hidden="true" />
 
       {/* Mobile Slide-Out Drawer */}
       <AnimatePresence>

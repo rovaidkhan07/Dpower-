@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
@@ -15,28 +15,28 @@ interface HeroSlide {
 const SLIDES: HeroSlide[] = [
   {
     id: "fast-chargers",
-    image: "/banners/dk-power-fast-chargers-banner.jpg",
+    image: "/banners/Fast-chargers-banner-desktop.png",
     alt: "DK Power Fast Chargers – Wholesale Prices, Genuine Stock. 65W GaN Technology, Multi-Port, Bulk Available.",
     href: "/shop?category=chargers",
     ariaLabel: "Shop wholesale fast chargers at DK Power",
   },
   {
     id: "cables",
-    image: "/banners/dk-power-cables-banner.jpg",
+    image: "/banners/Charging-cables-banner-desktop.png",
     alt: "DK Power Charging Cables – Fast Data & Charging, Bulk Stock Ready. USB-C & Lightning, 120W Fast Charge.",
     href: "/shop?category=cables",
     ariaLabel: "Shop wholesale charging cables at DK Power",
   },
   {
     id: "earbuds",
-    image: "/banners/dk-power-earbuds-banner.jpg",
+    image: "/banners/Eurbuds-banner-desktop.png",
     alt: "DK Power Wireless Earbuds – True Wireless Sound, Wholesale Ready. Active Noise Cancelling, 40H Battery Life.",
     href: "/shop?category=earbuds",
     ariaLabel: "Shop wholesale wireless earbuds at DK Power",
   },
   {
     id: "power-banks",
-    image: "/banners/dk-power-power-banks-banner.jpg",
+    image: "/banners/Power-Bank-banners-desktop.png",
     alt: "DK Power Power Banks – Never Run Out, Wholesale Stock. 20,000mAh Capacity, 65W Output, Reseller Deals.",
     href: "/shop?category=power-banks",
     ariaLabel: "Shop wholesale power banks at DK Power",
@@ -110,7 +110,11 @@ export function HeroBanner() {
     if (!touchStart || !touchEnd) return;
     const delta = touchStart - touchEnd;
     if (Math.abs(delta) > 50) {
-      if (delta > 0) { goNext(); } else { goPrev(); }
+      if (delta > 0) {
+        goNext();
+      } else {
+        goPrev();
+      }
     }
     setTouchStart(null);
     setTouchEnd(null);
@@ -131,16 +135,17 @@ export function HeroBanner() {
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-      {/* Main Slide — full-width clickable banner */}
-      <div className="relative w-full overflow-hidden rounded-none sm:rounded-2xl mx-auto max-w-[1280px] sm:mx-auto sm:px-4 sm:pt-4">
-        <div className="sm:rounded-2xl overflow-hidden">
+      {/* Main Slide — compact, widescreen container fitting above the fold without scrolling */}
+      <div className="relative w-full overflow-hidden rounded-none sm:rounded-2xl mx-auto max-w-[1280px] sm:px-4 sm:pt-2 sm:pb-1">
+        <div className="sm:rounded-2xl overflow-hidden bg-[#111111]">
           <Link
             href={slide.href}
             aria-label={slide.ariaLabel}
             tabIndex={0}
-            className="block w-full cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-[#d71920] focus-visible:ring-offset-2 focus-visible:rounded-2xl"
+            className="block w-full cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:rounded-2xl"
           >
-            <div className="relative w-full" style={{ aspectRatio: "16/9" }}>
+            {/* 2.4:1 aspect ratio matching the 1942x809 desktop banners, with maximum height clamp */}
+            <div className="relative w-full aspect-[16/8] sm:aspect-[2.4/1] max-h-[360px] md:max-h-[400px] lg:max-h-[420px]">
               {SLIDES.map((s, idx) => (
                 <Image
                   key={s.id}
@@ -149,7 +154,7 @@ export function HeroBanner() {
                   fill
                   priority={idx === 0}
                   sizes="(max-width: 640px) 100vw, (max-width: 1280px) calc(100vw - 32px), 1280px"
-                  className="object-contain transition-opacity duration-500 ease-in-out"
+                  className="object-cover sm:object-contain transition-opacity duration-500 ease-in-out"
                   style={{ opacity: idx === current ? 1 : 0 }}
                   draggable={false}
                 />
@@ -162,20 +167,46 @@ export function HeroBanner() {
       {/* Desktop Nav Arrows */}
       <div className="hidden sm:block">
         <button
-          onClick={(e) => { e.stopPropagation(); goPrev(); }}
+          onClick={(e) => {
+            e.stopPropagation();
+            goPrev();
+          }}
           aria-label="Previous slide"
-          className="absolute left-6 lg:left-8 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 rounded-full bg-black/50 hover:bg-black/75 text-white border border-white/20 backdrop-blur-sm transition-all duration-200 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          className="absolute left-6 lg:left-8 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-9 h-9 lg:w-10 lg:h-10 rounded-full bg-black/60 hover:bg-primary text-white border border-white/20 backdrop-blur-sm transition-all duration-200 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer"
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
             <polyline points="15 18 9 12 15 6" />
           </svg>
         </button>
         <button
-          onClick={(e) => { e.stopPropagation(); goNext(); }}
+          onClick={(e) => {
+            e.stopPropagation();
+            goNext();
+          }}
           aria-label="Next slide"
-          className="absolute right-6 lg:right-8 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 rounded-full bg-black/50 hover:bg-black/75 text-white border border-white/20 backdrop-blur-sm transition-all duration-200 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          className="absolute right-6 lg:right-8 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-9 h-9 lg:w-10 lg:h-10 rounded-full bg-black/60 hover:bg-primary text-white border border-white/20 backdrop-blur-sm transition-all duration-200 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer"
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
             <polyline points="9 18 15 12 9 6" />
           </svg>
         </button>
@@ -185,7 +216,7 @@ export function HeroBanner() {
       <div
         role="tablist"
         aria-label="Slide indicators"
-        className="flex items-center justify-center gap-1.5 pt-3 pb-1 sm:pt-3 sm:pb-2"
+        className="flex items-center justify-center gap-1.5 pt-1.5 pb-2"
       >
         {SLIDES.map((s, idx) => (
           <button
@@ -194,10 +225,10 @@ export function HeroBanner() {
             aria-selected={idx === current}
             aria-label={`Go to slide ${idx + 1}: ${s.id}`}
             onClick={() => goTo(idx)}
-            className={`h-1.5 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d71920] ${
+            className={`h-1.5 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer ${
               idx === current
-                ? "w-6 bg-[#d71920]"
-                : "w-1.5 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400"
+                ? "w-6 bg-primary"
+                : "w-1.5 bg-gray-400 dark:bg-gray-600 hover:bg-gray-300"
             }`}
           />
         ))}
@@ -205,4 +236,3 @@ export function HeroBanner() {
     </section>
   );
 }
-
