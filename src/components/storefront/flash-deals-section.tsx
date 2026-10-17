@@ -101,13 +101,17 @@ export function FlashDealsSection({ products }: FlashDealsProps) {
       addItem(matchedProduct, null, 1);
     } else {
       addItem({
-        id: deal.id,
         productId: deal.id,
+        variantId: null,
         name: deal.title,
-        price: deal.price,
-        image: deal.image,
-        quantity: 1,
+        brand: "DK Power",
         slug: deal.slug,
+        sku: deal.id,
+        imageUrl: deal.image,
+        unitPrice: deal.price,
+        regularPrice: deal.originalPrice,
+        quantity: 1,
+        stockQuantity: 99,
       });
     }
     openCart();
