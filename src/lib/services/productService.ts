@@ -112,19 +112,51 @@ export async function getProducts(params: FilterParams = {}) {
 }
 
 export async function getProductBySlug(slug: string): Promise<ProductWithDetails | null> {
-  const product = await prisma.product.findUnique({
-    where: { slug },
-    include: {
-      category: true,
-      images: {
-        orderBy: { sortOrder: "asc" },
-      },
-      variants: {
-        where: { isActive: true },
-        orderBy: { createdAt: "asc" },
-      },
+  const includeQuery = {
+    category: true,
+    images: {
+      orderBy: { sortOrder: "asc" as const },
     },
+    variants: {
+      where: { isActive: true },
+      orderBy: { createdAt: "asc" as const },
+    },
+  };
+
+  let product = await prisma.product.findUnique({
+    where: { slug },
+    include: includeQuery,
   });
+
+  if (!product) {
+    const SLUG_ALIASES: Record<string, string> = {
+      "65w-gan-fast-charger": "65w-gan-fast-charger-white",
+      "baseus-gan5-pro-65w-fast-charger": "65w-gan-fast-charger-white",
+      "ugreen-nexode-30w-mini-gan": "65w-gan-fast-charger-white",
+      "anker-312-20w-fast-charger": "65w-gan-fast-charger-white",
+    };
+
+    const targetSlug = SLUG_ALIASES[slug];
+    if (targetSlug) {
+      product = await prisma.product.findUnique({
+        where: { slug: targetSlug },
+        include: includeQuery,
+      });
+    }
+  }
+
+  if (!product) {
+    product = await prisma.product.findFirst({
+      where: {
+        isActive: true,
+        OR: [
+          { slug: { contains: slug.split("-")[0] } },
+          { name: { contains: slug.split("-")[0], mode: "insensitive" } },
+        ],
+      },
+      include: includeQuery,
+    });
+  }
 
   return product as ProductWithDetails | null;
 }
