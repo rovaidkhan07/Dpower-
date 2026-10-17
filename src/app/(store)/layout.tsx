@@ -1,5 +1,6 @@
 import React from "react";
 import { Header } from "@/components/storefront/header";
+import { KharidlyDesktopHeader } from "@/components/storefront/kharidly-desktop-header";
 import { MobileBottomNav } from "@/components/storefront/mobile-bottom-nav";
 import { Footer } from "@/components/storefront/footer";
 import { CartDrawer } from "@/components/cart/cart-drawer";
@@ -21,7 +22,12 @@ export default async function StoreLayout({
     <RuntimeStoreSettings settings={settings}>
       <CartProvider>
         <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-[#0F1115] text-slate-900 dark:text-[#D5D9E0] font-sans antialiased">
-          <Header />
+          <div className="hidden lg:block">
+            <KharidlyDesktopHeader />
+          </div>
+          <div className="lg:hidden">
+            <Header />
+          </div>
           <main className="flex-1 pb-20 lg:pb-0">{children}</main>
           <Footer />
           <CartDrawer />
