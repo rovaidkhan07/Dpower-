@@ -139,4 +139,3 @@ export async function getCustomerSession(): Promise<UserSessionPayload | null> {
     return null;
   }
 }
-
