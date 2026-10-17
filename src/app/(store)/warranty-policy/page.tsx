@@ -10,22 +10,23 @@ import {
 import { buildWhatsAppSupportUrl } from "@/lib/config/store";
 
 export const metadata = {
-  title: "Warranty Policy | Kharidly",
+  title: "Warranty Policy | DK Power",
   description:
-    "Kharidly's warranty policy — genuine products backed by straightforward warranty coverage across Pakistan.",
+    "DK Power official warranty policy — genuine chargers, power banks, and cables backed by direct replacement warranty across Pakistan.",
 };
 
 const covered = [
   "Manufacturing defects out of the box",
-  "Faulty charging, buttons, or connectivity within the warranty period",
-  "Battery or performance issues not caused by misuse",
+  "Faulty charging, multi-port failure, or connectivity issues within warranty period",
+  "Internal battery failure or power bank output loss under normal use",
+  "Fast charge protocol handshaking failures (PD / QC / GaN)",
 ];
 
 const notCovered = [
-  "Physical damage from drops, impacts, or pressure",
-  "Water, moisture, or liquid damage",
-  "Damage from unauthorized repair or modification",
-  "Normal wear and tear (cables fraying, cosmetic scratches)",
+  "Physical damage from drops, severe impacts, or excessive pressure",
+  "Water, moisture, or liquid submersion damage",
+  "Damage from unauthorized dismantling, tampering, or modifications",
+  "Intentional cable cutting or extreme outer tear beyond normal use",
 ];
 
 export default function WarrantyPolicyPage() {
@@ -33,17 +34,16 @@ export default function WarrantyPolicyPage() {
   return (
     <div className="bg-slate-50 dark:bg-[#0F1217] min-h-screen">
       {/* Hero */}
-      <div className="bg-gray-950 text-white">
+      <div className="bg-[#111111] text-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-14 sm:py-20 text-center">
-          <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase text-[#fb923c] mb-4">
+          <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase text-primary mb-4">
             Buy With Confidence
           </span>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-            Warranty <span className="text-primary">Policy</span>
+            DK Power <span className="text-primary">Warranty Policy</span>
           </h1>
           <p className="mt-4 text-sm sm:text-base text-slate-300 max-w-2xl mx-auto">
-            Every genuine product deserves genuine protection. Here is what our
-            warranty covers — in plain words.
+            High-performance hardware backed by hassle-free brand protection.
           </p>
         </div>
       </div>
@@ -52,19 +52,17 @@ export default function WarrantyPolicyPage() {
         {/* Intro card */}
         <div className="bg-white dark:bg-[#15181E] rounded-3xl border border-slate-200 dark:border-[#262C37] p-6 sm:p-8 shadow-sm">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-11 h-11 rounded-2xl bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400 flex items-center justify-center">
+            <div className="w-11 h-11 rounded-2xl bg-red-50 dark:bg-red-950/20 text-primary flex items-center justify-center">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <h2 className="text-xl font-extrabold text-slate-900 dark:text-white">
-              Straightforward coverage
+              Official Brand Warranty
             </h2>
           </div>
           <p className="text-sm text-slate-600 dark:text-[#8A919C] leading-relaxed">
-            Eligible products carry warranty for the period stated on their
-            product page. Because we only sell{" "}
-            <strong className="text-slate-900 dark:text-white">100% genuine products</strong>,
-            warranty claims are simple: no fine-print games, no runaround —
-            just contact us and we will sort it out.
+            All DK Power products come with our official brand warranty as stated on the product packaging and detail page. Because every device is{" "}
+            <strong className="text-slate-900 dark:text-white">100% original and lab-inspected</strong>,
+            warranty claims are quick and straightforward: message us on WhatsApp with your order number and we resolve it promptly.
           </p>
         </div>
 
@@ -72,7 +70,7 @@ export default function WarrantyPolicyPage() {
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="bg-white dark:bg-[#15181E] rounded-3xl border border-slate-200 dark:border-[#262C37] p-6 shadow-sm">
             <h3 className="font-extrabold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-              <FileCheck className="w-5 h-5 text-orange-600" /> What&apos;s
+              <FileCheck className="w-5 h-5 text-primary" /> What&apos;s
               covered
             </h3>
             <ul className="space-y-3">
@@ -114,15 +112,15 @@ export default function WarrantyPolicyPage() {
             {[
               {
                 title: "Message us on WhatsApp",
-                text: "Send your order number plus a short video or photos showing the fault.",
+                text: "Send your order number along with a short 10-second video demonstrating the charging issue.",
               },
               {
-                title: "We diagnose the issue",
-                text: "Our team checks whether the fault is covered — usually within 24 hours on working days.",
+                title: "Rapid Verification",
+                text: "Our technical support team verifies the serial code and issue — usually within 12-24 hours.",
               },
               {
-                title: "Repair or replacement",
-                text: "Covered faults get a free repair or a replacement unit, with return shipping on us.",
+                title: "Direct Replacement",
+                text: "Covered hardware receives an immediate replacement unit dispatched via courier.",
               },
             ].map((step, i) => (
               <div key={step.title} className="flex gap-4">
@@ -139,25 +137,24 @@ export default function WarrantyPolicyPage() {
             ))}
           </div>
           <p className="mt-6 text-xs text-slate-500 leading-relaxed">
-            Keep your order number safe — it is your warranty reference. Claims
-            made after the stated warranty period cannot be accepted.
+            Your DK Power invoice / order number serves as your digital warranty card.
           </p>
         </div>
 
         {/* CTA */}
         <div className="bg-primary rounded-3xl p-8 sm:p-10 text-center text-white">
-          <h2 className="text-2xl font-extrabold">Facing an issue?</h2>
-          <p className="mt-2 text-sm text-orange-50">
-            Reach out on WhatsApp with your order number — we respond fast.
+          <h2 className="text-2xl font-extrabold">Need warranty assistance?</h2>
+          <p className="mt-2 text-sm text-red-100">
+            Reach out on WhatsApp with your order number — our team will resolve it quickly.
           </p>
           <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-white text-accent font-bold px-6 py-3 rounded-full text-sm hover:bg-orange-50 transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-white text-primary font-bold px-6 py-3 rounded-full text-sm hover:bg-slate-100 transition-colors"
             >
-              <MessageCircle className="w-4 h-4" /> Claim Warranty
+              <MessageCircle className="w-4 h-4" /> Claim Warranty on WhatsApp
             </a>
             <Link
               href="/shop"
@@ -171,4 +168,3 @@ export default function WarrantyPolicyPage() {
     </div>
   );
 }
-

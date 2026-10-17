@@ -1,15 +1,14 @@
-import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { getCategories } from "@/lib/services/categoryService";
-import { ArrowRight, Layers } from "lucide-react";
-
-export const dynamic = "force-dynamic";
+import { Layers, ArrowRight } from "lucide-react";
 
 export const metadata = {
-  title: "Categories | Kharidly",
-  description: "Browse all mobile accessories categories: chargers, cables, power banks, covers, and audio gear.",
+  title: "Categories | DK Power",
+  description: "Browse all mobile charging and tech categories at DK Power in Pakistan.",
 };
+
+export const dynamic = "force-dynamic";
 
 export default async function CategoriesPage() {
   const categories = await getCategories();
@@ -18,7 +17,7 @@ export default async function CategoriesPage() {
     <div className="bg-slate-50 dark:bg-[#0F1217] min-h-screen py-8 sm:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-10 text-center max-w-2xl mx-auto">
-          <div className="w-12 h-12 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center mx-auto mb-3">
+          <div className="w-12 h-12 rounded-2xl bg-red-50 dark:bg-red-950/20 text-primary flex items-center justify-center mx-auto mb-3">
             <Layers className="w-6 h-6" />
           </div>
           <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
@@ -36,7 +35,7 @@ export default async function CategoriesPage() {
               <Link
                 key={category.id}
                 href={`/shop?category=${encodeURIComponent(category.slug)}`}
-                className="group bg-white dark:bg-[#15181E] rounded-2xl border border-gray-200/80 dark:border-[#262C37] hover:border-[#FF6B00]/60 p-3 sm:p-5 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+                className="group bg-white dark:bg-[#15181E] rounded-2xl border border-gray-200/80 dark:border-[#262C37] hover:border-primary/60 p-3 sm:p-5 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   <div className="relative aspect-square sm:aspect-4/3 w-full rounded-xl bg-slate-100 dark:bg-[#1C2028] overflow-hidden mb-3 sm:mb-4 border border-slate-100 dark:border-[#262C37]">
@@ -52,7 +51,7 @@ export default async function CategoriesPage() {
                     />
                   </div>
 
-                  <h2 className="text-sm sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-[#FF6B00] transition-colors leading-tight">
+                  <h2 className="text-sm sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-tight">
                     {category.name}
                   </h2>
 
@@ -67,7 +66,7 @@ export default async function CategoriesPage() {
                   <span className="font-semibold text-slate-600 dark:text-slate-400">
                     {count} {count === 1 ? "Product" : "Products"}
                   </span>
-                  <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-slate-100 dark:bg-[#262C37] group-hover:bg-[#FF6B00] group-hover:text-white flex items-center justify-center text-slate-600 dark:text-[#8A919C] transition-colors shrink-0">
+                  <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-slate-100 dark:bg-[#262C37] group-hover:bg-primary group-hover:text-white flex items-center justify-center text-slate-600 dark:text-[#8A919C] transition-colors shrink-0">
                     <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                   </div>
                 </div>
@@ -79,5 +78,3 @@ export default async function CategoriesPage() {
     </div>
   );
 }
-
-

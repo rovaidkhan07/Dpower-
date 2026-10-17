@@ -36,7 +36,7 @@ async function main() {
     data: {
       email: adminEmail,
       passwordHash,
-      name: "MobileHub Admin",
+      name: "DK Power Admin",
       phone: "+92 300 1234567",
       role: "admin",
     },
@@ -57,18 +57,18 @@ async function main() {
 
   // 3. Store Settings
   const settings = [
-    { key: "store_name", value: "MobileHub" },
-    { key: "store_tagline", value: "Premium Mobile Accessories at the Right Price" },
-    { key: "store_phone", value: "+92 300 1234567" },
-    { key: "store_whatsapp", value: "923001234567" },
-    { key: "store_email", value: "support@mobilehub.pk" },
+    { key: "store_name", value: "DK Power" },
+    { key: "store_tagline", value: "Wholesale Mobile Accessories & Power Solutions" },
+    { key: "store_phone", value: "+92 306 5292187" },
+    { key: "store_whatsapp", value: "923065292187" },
+    { key: "store_email", value: "support@dkpower.pk" },
     { key: "store_address", value: "Shop 14, Hafeez Center / Techno City, Karachi, Pakistan" },
     { key: "currency", value: "PKR" },
     { key: "currency_symbol", value: "Rs." },
     { key: "delivery_fee", value: "200" },
-    { key: "free_delivery_threshold", value: "3000" },
+    { key: "free_delivery_threshold", value: "0" },
     { key: "bank_name", value: "Meezan Bank Ltd." },
-    { key: "bank_account_title", value: "MobileHub Accessories" },
+    { key: "bank_account_title", value: "DK Power Wholesale" },
     { key: "bank_account_number", value: "0101-0102030405" },
     { key: "bank_iban", value: "PK00MEZN0001010102030405" },
   ];

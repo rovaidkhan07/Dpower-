@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -58,10 +58,10 @@ export function NavigationProgress() {
         }
       }
     };
-    window.addEventListener("kharidly:navigation-start", start);
+    window.addEventListener("dk-power:navigation-start", start);
     document.addEventListener("click", onClick);
     return () => {
-      window.removeEventListener("kharidly:navigation-start", start);
+      window.removeEventListener("dk-power:navigation-start", start);
       document.removeEventListener("click", onClick);
     };
   }, []);
@@ -71,7 +71,7 @@ export function NavigationProgress() {
   return (
     <div className="fixed top-0 left-0 right-0 z-[200] h-[3px] pointer-events-none">
       <div
-        className="h-full bg-primary shadow-[0_0_8px_rgba(249,115,22,0.7)] transition-all duration-300 ease-out"
+        className="h-full bg-primary shadow-[0_0_8px_rgba(215,25,32,0.7)] transition-all duration-300 ease-out"
         style={{ width: `${progress}%`, opacity: loading || progress === 100 ? 1 : 0 }}
       />
     </div>
@@ -81,7 +81,6 @@ export function NavigationProgress() {
 /** Dispatch this before programmatic navigations to show the loader immediately. */
 export function startNavigationLoader() {
   if (typeof window !== "undefined") {
-    window.dispatchEvent(new Event("kharidly:navigation-start"));
+    window.dispatchEvent(new Event("dk-power:navigation-start"));
   }
 }
-

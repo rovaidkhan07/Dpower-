@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   }
 
   const description = product.description.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 160)
-    || `Shop ${product.name} at Kharidly in Pakistan.`;
+    || `Shop ${product.name} at DK Power in Pakistan.`;
   const url = siteUrl(`/products/${encodeURIComponent(product.slug)}`);
   const images = product.images.map((image) => ({
     url: image.imageUrl,
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     title: product.name,
     description,
     alternates: { canonical: url },
-    openGraph: { type: "website", siteName: "Kharidly", title: product.name, description, url, images },
+    openGraph: { type: "website", siteName: "DK Power", title: product.name, description, url, images },
     twitter: { card: images.length ? "summary_large_image" : "summary", title: product.name, description, images: images.map((image) => image.url) },
   };
 }

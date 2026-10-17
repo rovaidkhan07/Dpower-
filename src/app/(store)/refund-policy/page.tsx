@@ -10,36 +10,36 @@ import {
 import { buildWhatsAppSupportUrl } from "@/lib/config/store";
 
 export const metadata = {
-  title: "Refund & Return Policy | Kharidly",
+  title: "Refund & Return Policy | DK Power",
   description:
-    "Kharidly's refund and return policy — hassle-free returns on eligible items across Pakistan.",
+    "DK Power refund and return policy — 7-day hassle-free returns on eligible tech accessories across Pakistan.",
 };
 
 const steps = [
   {
     title: "Contact us on WhatsApp",
-    text: "Message us with your order number and a short video or photos showing the issue.",
+    text: "Message our team with your order number and a quick photo/video of the issue.",
   },
   {
-    title: "We verify your request",
-    text: "Our team reviews your request, usually within 24 hours on working days.",
+    title: "Instant Verification",
+    text: "Our customer success team reviews your claim promptly within 24 hours.",
   },
   {
-    title: "Return or replacement",
-    text: "Once approved, we arrange a replacement or process your refund to your bank account.",
+    title: "Replacement or Bank Refund",
+    text: "Once approved, we arrange a swift replacement or process an instant refund directly to your bank account.",
   },
 ];
 
 const eligible = [
-  "Product arrived damaged or defective",
-  "Wrong item delivered",
-  "Product does not match its description",
+  "Product arrived damaged or defective during transit",
+  "Wrong model, color, or cable length delivered",
+  "Product fails to perform according to listed technical specifications",
 ];
 
 const notEligible = [
-  "Damage caused by misuse, drops, or water exposure",
-  "Items returned without original packaging and accessories",
-  "Change-of-mind requests after the product has been used",
+  "Physical drops, burned ports due to improper electrical sockets, or water immersion",
+  "Items returned without their original retail box and included accessories",
+  "Items damaged through unauthorized repair or modifications",
 ];
 
 export default function RefundPolicyPage() {
@@ -47,17 +47,16 @@ export default function RefundPolicyPage() {
   return (
     <div className="bg-slate-50 dark:bg-[#0F1217] min-h-screen">
       {/* Hero */}
-      <div className="bg-gray-950 text-white">
+      <div className="bg-[#111111] text-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-14 sm:py-20 text-center">
-          <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase text-[#fb923c] mb-4">
+          <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase text-primary mb-4">
             Our Promise
           </span>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
             Refund &amp; <span className="text-primary">Return Policy</span>
           </h1>
           <p className="mt-4 text-sm sm:text-base text-slate-300 max-w-2xl mx-auto">
-            Changed your mind or received a faulty item? Here is exactly how
-            returns and refunds work at Kharidly.
+            Transparent, customer-first returns. Here is how returns and refunds work at DK Power.
           </p>
         </div>
       </div>
@@ -66,7 +65,7 @@ export default function RefundPolicyPage() {
         {/* Intro card */}
         <div className="bg-white dark:bg-[#15181E] rounded-3xl border border-slate-200 dark:border-[#262C37] p-6 sm:p-8 shadow-sm">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-11 h-11 rounded-2xl bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400 flex items-center justify-center">
+            <div className="w-11 h-11 rounded-2xl bg-red-50 dark:bg-red-950/20 text-primary flex items-center justify-center">
               <RotateCcw className="w-5 h-5" />
             </div>
             <h2 className="text-xl font-extrabold text-slate-900 dark:text-white">
@@ -74,10 +73,9 @@ export default function RefundPolicyPage() {
             </h2>
           </div>
           <p className="text-sm text-slate-600 dark:text-[#8A919C] leading-relaxed">
-            We offer hassle-free returns on eligible items within{" "}
-            <strong className="text-slate-900 dark:text-white">7 days of delivery</strong>. If
-            your product arrives damaged, defective, or simply not as
-            described, we will make it right — with a replacement or a refund.
+            We provide hassle-free returns on eligible items within{" "}
+            <strong className="text-slate-900 dark:text-white">7 days of courier delivery</strong>. If
+            your product arrives damaged, defective, or incorrect, our team will make it right immediately with a replacement or a bank refund.
           </p>
         </div>
 
@@ -85,7 +83,7 @@ export default function RefundPolicyPage() {
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="bg-white dark:bg-[#15181E] rounded-3xl border border-slate-200 dark:border-[#262C37] p-6 shadow-sm">
             <h3 className="font-extrabold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-orange-600" /> Eligible for
+              <ShieldCheck className="w-5 h-5 text-primary" /> Eligible for
               return
             </h3>
             <ul className="space-y-3">
@@ -118,7 +116,7 @@ export default function RefundPolicyPage() {
 
         {/* Process */}
         <div className="bg-white dark:bg-[#15181E] rounded-3xl border border-slate-200 dark:border-[#262C37] p-6 sm:p-8 shadow-sm">
-          <h2 className="text-xl font-extrabold text-slate-900 mb-6">
+          <h2 className="text-xl font-extrabold text-slate-900 dark:text-white mb-6">
             How to request a return
           </h2>
           <div className="space-y-5">
@@ -140,31 +138,26 @@ export default function RefundPolicyPage() {
 
         {/* Refund method */}
         <div className="bg-white dark:bg-[#15181E] rounded-3xl border border-slate-200 dark:border-[#262C37] p-6 sm:p-8 shadow-sm">
-          <h2 className="text-xl font-extrabold text-slate-900 mb-3">
-            How refunds are paid
+          <h2 className="text-xl font-extrabold text-slate-900 dark:text-white mb-3">
+            How refunds are processed
           </h2>
           <p className="text-sm text-slate-600 dark:text-[#8A919C] leading-relaxed">
-            Approved refunds are transferred directly to your bank account
-            within 3–5 working days. For Cash on Delivery orders, we will ask
-            for your bank account details on WhatsApp to complete the refund.
-            Delivery charges are non-refundable unless the return is due to our
-            mistake.
+            Approved refunds are remitted directly via online bank transfer within 2-4 working days. For Cash on Delivery orders, our representative will request your IBAN or account details over official WhatsApp to process the reimbursement.
           </p>
         </div>
 
         {/* CTA */}
         <div className="bg-primary rounded-3xl p-8 sm:p-10 text-center text-white">
-          <h2 className="text-2xl font-extrabold">Need to start a return?</h2>
-          <p className="mt-2 text-sm text-orange-50">
-            Message us on WhatsApp with your order number — a real human will
-            help you.
+          <h2 className="text-2xl font-extrabold">Need to initiate a return?</h2>
+          <p className="mt-2 text-sm text-red-100">
+            Send us a message on WhatsApp with your order number — our team will assist you immediately.
           </p>
           <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-white text-accent font-bold px-6 py-3 rounded-full text-sm hover:bg-orange-50 transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-white text-primary font-bold px-6 py-3 rounded-full text-sm hover:bg-slate-100 transition-colors"
             >
               <MessageCircle className="w-4 h-4" /> Chat on WhatsApp
             </a>
@@ -180,4 +173,3 @@ export default function RefundPolicyPage() {
     </div>
   );
 }
-

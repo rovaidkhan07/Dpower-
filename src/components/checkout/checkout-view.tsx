@@ -285,7 +285,7 @@ export function CheckoutView() {
                 ) : (
                   <div className="p-4 rounded-[16px] bg-secondary border border-border flex items-center justify-between text-xs">
                     <span className="text-foreground font-bold uppercase tracking-wider">
-                      Have a Kharidly account?
+                      Have a DK Power Trade account?
                     </span>
                     <Link
                       href="/login?redirect=/checkout"

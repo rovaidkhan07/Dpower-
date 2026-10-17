@@ -52,7 +52,7 @@ export function AdminSidebar() {
             MH
           </div>
           <div className="flex flex-col">
-            <span className="font-black text-sm leading-tight text-gray-950">Kharidly</span>
+            <span className="font-black text-sm leading-tight text-gray-950">DK Power</span>
             <span className="text-[9px] font-bold text-accent uppercase tracking-wider">
               Admin Portal
             </span>
@@ -76,21 +76,11 @@ export function AdminSidebar() {
         <div className="flex flex-col h-full overflow-y-auto">
           {/* Brand Logo Header - Exactly matching Storefront */}
           <div className="p-6 border-b border-gray-200 flex items-center justify-between">
-            <Link href="/admin" className="flex items-center gap-3 group">
-              <div className="relative w-10 h-10 rounded-sm bg-black flex items-center justify-center text-white font-black text-xs tracking-tight shadow-md group-hover:scale-105 transition-transform">
-                MH
-                <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-primary ring-2 ring-white" />
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-1.5">
-                  <span className="font-black text-gray-950 text-base tracking-tight">
-                    Mobile<span className="text-accent">Hub</span>
-                  </span>
-                </div>
-                <span className="text-[10px] text-gray-500 font-bold uppercase tracking-widest flex items-center gap-1">
-                  <Sparkles className="w-2.5 h-2.5 text-accent" /> Admin Suite
-                </span>
-              </div>
+            <Link href="/admin" className="flex flex-col items-start gap-1 group">
+              <img src="/logo/dk-power.png" alt="DK Power" className="h-9 w-auto object-contain group-hover:scale-105 transition-transform" />
+              <span className="text-[10px] text-gray-500 font-bold uppercase tracking-widest flex items-center gap-1 mt-1">
+                <Sparkles className="w-2.5 h-2.5 text-accent" /> Admin Portal
+              </span>
             </Link>
           </div>
 

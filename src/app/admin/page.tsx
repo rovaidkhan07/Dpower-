@@ -84,7 +84,7 @@ export default async function AdminDashboardPage() {
           <div className="space-y-1.5 sm:space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-background border border-gray-200 text-xs font-bold text-gray-800 shadow-2xs">
               <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
-              <span>Kharidly Control Center</span>
+              <span>DK Power Control Center</span>
             </div>
             <h1 className="text-2xl sm:text-4xl font-black text-gray-950 uppercase tracking-tight">
               Store Dashboard

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import Link from "next/link";
@@ -16,35 +16,35 @@ export function TrendingSection({ products }: TrendingSectionProps) {
   if (!displayedProducts || displayedProducts.length === 0) return null;
 
   return (
-    <section className="w-full bg-white dark:bg-[#15181E] font-sans py-5 sm:py-8 lg:py-12">
+    <section className="w-full bg-white dark:bg-[#111215] font-sans py-7 sm:py-10 border-b border-gray-100 dark:border-white/5">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section matching mockup */}
-        <div className="flex items-center justify-between gap-4 mb-3 sm:mb-6">
-          <h2 className="text-base sm:text-2xl font-bold text-gray-900 dark:text-white tracking-tight">
-            Featured Products
-          </h2>
+        {/* Header with Title and View All */}
+        <div className="flex items-center justify-between gap-4 mb-6 sm:mb-8">
+          <div className="flex items-center gap-3">
+            <h2 className="text-lg sm:text-2xl font-black uppercase tracking-tight text-gray-900 dark:text-white">
+              Featured Products
+            </h2>
+            <span className="hidden sm:inline-block text-[11px] font-bold uppercase tracking-wider bg-red-100 text-[#b51218] px-2.5 py-0.5 rounded-full">
+              Wholesale Catalog
+            </span>
+          </div>
 
           <Link
             href="/shop"
-            className="inline-flex items-center gap-1 text-xs font-semibold text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors shrink-0"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-gray-600 dark:text-gray-300 hover:text-[#b51218] dark:hover:text-[#ff4d4f] transition-colors shrink-0"
           >
             <span>View All</span>
-            <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </Link>
         </div>
 
-        {/* Product Cards: horizontal scroll on mobile, responsive grid on sm+ */}
-        <div className="flex gap-2.5 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:overflow-visible scrollbar-none snap-x sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-4 md:gap-6">
+        {/* 4 Cards Shelf - Exact same grid as Flash Wholesale Deals */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6">
           {displayedProducts.map((product) => (
-            <div key={product.id} className="w-[155px] sm:w-auto shrink-0 snap-start min-w-0 flex">
-              <ProductCard product={product} variant="compact" />
-            </div>
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </div>
     </section>
   );
 }
-
-
-

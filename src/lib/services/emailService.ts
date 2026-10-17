@@ -68,7 +68,7 @@ async function sendEmail({
 
   // 2. Secondary: SMTP Transport
   const transporter = getSmtpTransporter();
-  const smtpFrom = process.env.SMTP_FROM || "Kharidly <no-reply@Kharidly.pk>";
+  const smtpFrom = process.env.SMTP_FROM || "DK Power <no-reply@dkpower.pk>";
   if (transporter) {
     try {
       const info = await transporter.sendMail({
@@ -98,7 +98,7 @@ async function sendEmail({
  * Sends a high-end Luxury Branded Verification OTP Email
  */
 export async function sendVerificationEmail(toEmail: string, otpCode: string, customerName?: string) {
-  const subject = `${otpCode} is your Kharidly verification code`;
+  const subject = `${otpCode} is your DK Power verification code`;
   const nameDisplay = customerName ? customerName.trim() : "Valued Customer";
 
   const html = `
@@ -107,7 +107,7 @@ export async function sendVerificationEmail(toEmail: string, otpCode: string, cu
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Verify Your Kharidly Account</title>
+  <title>Verify Your DK Power Account</title>
   <style>
     body {
       margin: 0;
@@ -278,7 +278,7 @@ export async function sendVerificationEmail(toEmail: string, otpCode: string, cu
         </div>
 
         <h1 class="headline">
-          Welcome to Kharidly
+          Welcome to DK Power
         </h1>
 
         <p class="paragraph">
@@ -294,7 +294,7 @@ export async function sendVerificationEmail(toEmail: string, otpCode: string, cu
         </div>
 
         <p class="paragraph" style="font-size: 12px; color: #718096; margin-bottom: 0;">
-          For security reasons, never share this code with anyone. If you did not sign up for an account on Kharidly, you can safely ignore this email.
+          For security reasons, never share this code with anyone. If you did not sign up for an account on DK Power, you can safely ignore this email.
         </p>
 
         <!-- Perks Section -->
@@ -307,11 +307,11 @@ export async function sendVerificationEmail(toEmail: string, otpCode: string, cu
 
       <!-- Footer -->
       <div class="footer-section">
-        <a href="https://wa.me/923005879869" class="whatsapp-btn">
+        <a href="https://wa.me/923065292187" class="whatsapp-btn">
           Need Help? Chat on WhatsApp
         </a>
         <p class="legal-text">
-          &copy; 2026 Kharidly Technologies Pakistan. All rights reserved.<br>
+          &copy; 2026 DK Power Pakistan. All rights reserved.<br>
           Karachi, Lahore, Islamabad &amp; Nationwide Delivery.
         </p>
       </div>
@@ -328,7 +328,7 @@ export async function sendVerificationEmail(toEmail: string, otpCode: string, cu
  * Sends a high-end Luxury Branded Password Reset OTP Email
  */
 export async function sendPasswordResetEmail(toEmail: string, otpCode: string) {
-  const subject = `${otpCode} is your Kharidly password reset code`;
+  const subject = `${otpCode} is your DK Power password reset code`;
 
   const html = `
 <!DOCTYPE html>
@@ -336,7 +336,7 @@ export async function sendPasswordResetEmail(toEmail: string, otpCode: string) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reset Your Kharidly Password</title>
+  <title>Reset Your DK Power Password</title>
   <style>
     body {
       margin: 0;
@@ -495,7 +495,7 @@ export async function sendPasswordResetEmail(toEmail: string, otpCode: string) {
 
         <p class="paragraph">
           Assalam-o-Alaikum,<br><br>
-          We received a request to reset the password for your Kharidly customer account. Enter the 6-digit recovery code below to choose a new password:
+          We received a request to reset the password for your DK Power customer account. Enter the 6-digit recovery code below to choose a new password:
         </p>
 
         <!-- OTP Code Card -->
@@ -512,11 +512,11 @@ export async function sendPasswordResetEmail(toEmail: string, otpCode: string) {
 
       <!-- Footer -->
       <div class="footer-section">
-        <a href="https://wa.me/923005879869" class="whatsapp-btn">
+        <a href="https://wa.me/923065292187" class="whatsapp-btn">
           Need Help? Chat on WhatsApp
         </a>
         <p class="legal-text">
-          &copy; 2026 Kharidly Technologies Pakistan. All rights reserved.<br>
+          &copy; 2026 DK Power Pakistan. All rights reserved.<br>
           Karachi, Lahore, Islamabad &amp; Nationwide Delivery.
         </p>
       </div>

@@ -7,31 +7,31 @@ import { buildWhatsAppSupportUrl } from "@/lib/config/store";
 const faqs = [
   {
     q: "Are your products 100% genuine?",
-    a: "Yes. Every product on Kharidly is 100% original and quality-checked before dispatch. We never sell copies or replicas.",
+    a: "Yes. Every product on DK Power is 100% original, lab-tested and quality-checked before dispatch. We never sell copies or replicas.",
   },
   {
-    q: "How long does delivery take?",
-    a: "Orders are dispatched quickly and delivery usually takes a few working days depending on your city. You'll be able to track your order live once it's shipped.",
+    q: "How long does delivery take across Pakistan?",
+    a: "Orders are dispatched within 24 hours. Delivery takes 1-3 working days in major cities (Karachi, Lahore, Islamabad, Rawalpindi) and 2-4 working days in other regions. Live courier tracking is provided.",
   },
   {
     q: "What are the delivery charges?",
-    a: "Delivery is FREE on all orders above PKR 3,000. A small flat delivery fee applies to orders below that amount, shown at checkout.",
+    a: "Delivery is FREE on all orders above PKR 3,000. For orders below PKR 3,000, a nominal delivery charge is calculated at checkout.",
   },
   {
-    q: "How can I pay for my order?",
-    a: "We accept direct bank transfer. After placing your order, you'll receive our bank account details to complete the payment.",
+    q: "What payment methods do you accept?",
+    a: "We accept Cash on Delivery (COD) nationwide and Direct Bank Transfer for instant dispatch.",
   },
   {
-    q: "What is your return policy?",
-    a: "We offer hassle-free returns on eligible items. If your product arrives damaged or defective, contact us on WhatsApp with your order number and we'll sort it out right away.",
+    q: "What is your warranty and return policy?",
+    a: "All DK Power chargers, cables, and power banks carry our official brand warranty. If you experience any manufacturing defect or transit damage, message us on WhatsApp with your order number for an immediate replacement.",
   },
   {
-    q: "How do I track my order?",
-    a: "After checkout you'll receive a secure tracking token. Enter it on the Track Your Order page to view live shipment progress at any time.",
+    q: "Do you offer wholesale and bulk discounts for retailers?",
+    a: "Yes! DK Power is Pakistan's leading wholesale manufacturer and distributor. We offer volume tiers and exclusive wholesale rates for phone shop owners and reseller businesses.",
   },
   {
-    q: "Do products come with warranty?",
-    a: "Eligible products carry warranty as stated on their product page. For any warranty claim, reach out to us on WhatsApp with your order number.",
+    q: "How do I track my order status?",
+    a: "After placing an order you receive an Order Number and secure Tracking Token. Enter them on our 'Track Your Order' page to monitor live courier milestone updates.",
   },
 ];
 
@@ -41,16 +41,16 @@ export default function FaqPage() {
   return (
     <div className="bg-slate-50 dark:bg-[#0F1217] min-h-screen">
       {/* Hero */}
-      <div className="bg-gray-950 text-white">
+      <div className="bg-[#111111] text-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-14 sm:py-20 text-center">
-          <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase text-[#fb923c] mb-4">
+          <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase text-primary mb-4">
             Help Center
           </span>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
             Frequently Asked <span className="text-primary">Questions</span>
           </h1>
           <p className="mt-4 text-sm sm:text-base text-slate-300 max-w-2xl mx-auto">
-            Everything you need to know about shopping with Kharidly.
+            Everything you need to know about shopping, wholesale ordering, and warranties at DK Power.
           </p>
         </div>
       </div>
@@ -98,14 +98,14 @@ export default function FaqPage() {
 
         {/* Support CTA */}
         <div className="mt-10 bg-white dark:bg-[#15181E] rounded-2xl border border-slate-200 dark:border-[#262C37] p-6 sm:p-8 text-center shadow-xs">
-          <div className="w-12 h-12 rounded-2xl bg-orange-50 text-accent flex items-center justify-center mx-auto mb-4">
+          <div className="w-12 h-12 rounded-2xl bg-red-50 dark:bg-red-950/20 text-primary flex items-center justify-center mx-auto mb-4">
             <MessageCircle className="w-6 h-6" />
           </div>
           <h2 className="text-lg font-extrabold text-slate-900 dark:text-white">
             Still have a question?
           </h2>
-          <p className="text-sm text-slate-500 mt-1.5">
-            Message us on WhatsApp — a real human will reply.
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1.5">
+            Reach out to our customer care team on WhatsApp — we respond promptly.
           </p>
           <a
             href={buildWhatsAppSupportUrl()}
@@ -121,4 +121,3 @@ export default function FaqPage() {
     </div>
   );
 }
-
