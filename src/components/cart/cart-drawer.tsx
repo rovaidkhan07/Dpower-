@@ -86,7 +86,7 @@ export function CartDrawer() {
   if (!isCartOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden">
+    <div className="fixed inset-0 z-[100] overflow-hidden">
       {/* Backdrop */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -279,7 +279,7 @@ export function CartDrawer() {
 
           {/* Footer buttons */}
           {items.length > 0 && (
-            <div className="px-5 py-4 border-t border-gray-100 dark:border-[#2A2F3A] flex gap-3 shrink-0 bg-white dark:bg-[#15181E]">
+            <div className="px-5 py-4 pb-[max(1.25rem,calc(env(safe-area-inset-bottom)+1rem))] border-t border-gray-100 dark:border-[#2A2F3A] flex gap-3 shrink-0 bg-white dark:bg-[#15181E] relative z-30 shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
               <Link
                 href="/shop"
                 onClick={closeCart}
