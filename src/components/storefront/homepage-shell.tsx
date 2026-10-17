@@ -9,6 +9,7 @@ import { CategoryGrid } from "@/components/storefront/category-grid";
 import { SocialProofBanner } from "@/components/storefront/social-proof-banner";
 import { TrustFeatures } from "@/components/storefront/trust-features";
 import { VipBanner } from "@/components/storefront/vip-banner";
+import { KharidlyDesktopHome } from "@/components/storefront/kharidly-desktop-home";
 import { ProductWithDetails } from "@/types";
 import { Category } from "@/generated/prisma/client";
 
@@ -23,30 +24,21 @@ export function HomepageShell({ featuredProducts, categories, trendingProducts }
   const flashProducts = trendingProducts.products.length ? trendingProducts.products : displayProducts;
 
   return (
-    <div className="bg-[#fcfcfc] dark:bg-[#0c0d0e] transition-colors">
-      {/* 1. High-Energy Hero Carousel */}
-      <HeroBanner />
+    <>
+      <div className="hidden lg:block">
+        <KharidlyDesktopHome products={displayProducts} />
+      </div>
 
-      {/* 2. DabLew Style Circular Category Icon Strip */}
-      <CategoryIconStrip />
-
-      {/* 3. Flash Deals with Live Urgency Countdown Timer (⚡ Deal Ending In ⚡) */}
-      <FlashDealsSection products={flashProducts} />
-
-      {/* 4. Quick Category Visual Cards */}
-      <CategoryGrid categories={categories} />
-
-      {/* 5. Trending & Featured Products Shelf */}
-      <TrendingSection products={displayProducts} />
-
-      {/* 6. Heavy Social Proof Banner with 50K+ Trust Metrics and Reviews */}
-      <SocialProofBanner />
-
-      {/* 7. Wholesale & Retail Guarantees */}
-      <TrustFeatures />
-
-      {/* 8. VIP Wholesale & Bulk Order Callout */}
-      <VipBanner />
-    </div>
+      <div className="lg:hidden bg-[#fcfcfc] dark:bg-[#0c0d0e] transition-colors">
+        <HeroBanner />
+        <CategoryIconStrip />
+        <FlashDealsSection products={flashProducts} />
+        <CategoryGrid categories={categories} />
+        <TrendingSection products={displayProducts} />
+        <SocialProofBanner />
+        <TrustFeatures />
+        <VipBanner />
+      </div>
+    </>
   );
 }
