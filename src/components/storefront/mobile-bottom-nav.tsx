@@ -23,55 +23,55 @@ export function MobileBottomNav() {
           href="/"
           className={`flex flex-col items-center justify-center py-1 px-3 ${
             pathname === "/"
-              ? "text-slate-950 font-semibold"
+              ? "text-[#b51218] font-bold"
               : "text-slate-500 hover:text-slate-900"
           }`}
         >
-          <Home className="size-4" />
-          <span className="text-[10px] mt-1">Home</span>
+          <Home className="size-4.5" />
+          <span className="text-[10px] mt-1 font-semibold">Home</span>
         </Link>
 
         <Link
-          href="/shop"
+          href="/categories"
           className={`flex flex-col items-center justify-center py-1 px-3 ${
-            pathname === "/shop"
-              ? "text-slate-950 font-semibold"
+            pathname === "/categories" || pathname === "/shop"
+              ? "text-[#b51218] font-bold"
               : "text-slate-500 hover:text-slate-900"
           }`}
         >
-          <Grid className="size-4" />
-          <span className="text-[10px] mt-1">Shop</span>
+          <Grid className="size-4.5" />
+          <span className="text-[10px] mt-1 font-semibold">Categories</span>
         </Link>
 
         <Link
           href="/cart"
           className={`flex flex-col items-center justify-center py-1 px-3 relative ${
             pathname === "/cart"
-              ? "text-slate-950 font-semibold"
+              ? "text-[#b51218] font-bold"
               : "text-slate-500 hover:text-slate-900"
           }`}
         >
           <div className="relative">
-            <ShoppingCart className="size-4" />
+            <ShoppingCart className="size-4.5" />
             {cartCount > 0 && (
-              <span className="absolute -top-1.5 -right-2.5 bg-emerald-500 text-white text-[9px] size-4 rounded-full flex items-center justify-center font-bold">
+              <span className="absolute -top-1.5 -right-2.5 bg-[#b51218] text-white text-[9px] size-4 rounded-full flex items-center justify-center font-black shadow-xs">
                 {cartCount}
               </span>
             )}
           </div>
-          <span className="text-[10px] mt-1">Cart</span>
+          <span className="text-[10px] mt-1 font-semibold">Cart</span>
         </Link>
 
         <Link
           href="/account"
           className={`flex flex-col items-center justify-center py-1 px-3 ${
             pathname === "/account"
-              ? "text-slate-950 font-semibold"
+              ? "text-[#b51218] font-bold"
               : "text-slate-500 hover:text-slate-900"
           }`}
         >
-          <User className="size-4" />
-          <span className="text-[10px] mt-1">Account</span>
+          <User className="size-4.5" />
+          <span className="text-[10px] mt-1 font-semibold">Account</span>
         </Link>
 
         <a
@@ -79,10 +79,10 @@ export function MobileBottomNav() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp"
-          className="flex flex-col items-center justify-center py-1 px-3 text-emerald-600"
+          className="flex flex-col items-center justify-center py-1 px-3 text-[#25D366] hover:text-[#1ebd59]"
         >
-          <WhatsAppIcon className="size-4" aria-hidden="true" />
-          <span className="text-[10px] mt-1">WhatsApp</span>
+          <WhatsAppIcon className="size-4.5" aria-hidden="true" />
+          <span className="text-[10px] mt-1 font-semibold">WhatsApp</span>
         </a>
       </div>
     </nav>

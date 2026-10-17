@@ -6,7 +6,7 @@ const JWT_SECRET = process.env.JWT_SECRET
   ? new TextEncoder().encode(process.env.JWT_SECRET)
   : null;
 
-const AUTH_COOKIE_NAME = "Kharidly_admin_session";
+const AUTH_COOKIE_NAME = "dk_power_admin_session";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;

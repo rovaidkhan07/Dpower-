@@ -176,7 +176,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({
         success: true,
         verified: true,
-        message: "Email verified successfully! Welcome to Kharidly.",
+        message: "Email verified successfully! Welcome to DK Power.",
         user: {
           id: user.id,
           email: user.email,

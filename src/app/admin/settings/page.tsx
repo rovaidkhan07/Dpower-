@@ -262,7 +262,7 @@ export default function AdminSettingsPage() {
                 value={settings.bank_account_title || ""}
                 onChange={(e) => handleChange("bank_account_title", e.target.value)}
                 className="bg-background border-gray-200 text-gray-900 rounded-sm h-11 focus:bg-white"
-                placeholder="Kharidly Technologies"
+                placeholder="DK Power Technologies"
               />
             </div>
 
@@ -304,7 +304,7 @@ export default function AdminSettingsPage() {
               <div>
                 <span className="text-gray-400">Title:</span>{" "}
                 <strong className="text-gray-950">
-                  {settings.bank_account_title || "Kharidly Technologies"}
+                  {settings.bank_account_title || "DK Power Technologies"}
                 </strong>
               </div>
               <div>

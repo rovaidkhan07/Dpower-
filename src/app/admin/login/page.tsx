@@ -50,8 +50,8 @@ export default function AdminLoginPage() {
   };
 
   const handleFillDemo = () => {
-    setEmail("admin@Kharidly.pk");
-    setPassword("admin123@Kharidly");
+    setEmail("admin@dkpower.pk");
+    setPassword("admin123@dkpower");
     setError(null);
   };
 

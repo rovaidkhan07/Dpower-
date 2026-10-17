@@ -113,7 +113,7 @@ export default function CustomerAccountPage() {
             <div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-background border border-gray-200 dark:border-[#262C37] text-xs font-bold text-gray-800 shadow-2xs mb-1">
                 <Sparkles className="w-3 h-3 text-accent" />
-                <span>{customer.role === "admin" ? "Kharidly Super Admin" : "Kharidly Member"}</span>
+                <span>{customer.role === "admin" ? "DK Power Super Admin" : "DK Power Trade Member"}</span>
               </div>
               <h1 className="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white dark:text-white">
                 Welcome, {customer.name}
@@ -163,7 +163,7 @@ export default function CustomerAccountPage() {
                   <span className="text-xs font-black uppercase tracking-wider text-accent">Staff Executive Console</span>
                   <span className="text-[10px] bg-white/15 text-slate-200 px-2.5 py-0.5 rounded-sm font-bold">Full Access</span>
                 </div>
-                <h2 className="text-lg sm:text-xl font-black text-white mt-1">Kharidly Admin Management Suite</h2>
+                <h2 className="text-lg sm:text-xl font-black text-white mt-1">DK Power Admin Management Suite</h2>
                 <p className="text-xs text-gray-300 mt-0.5">Manage live orders, catalog products, categories, stock inventory levels, and store configurations.</p>
               </div>
             </div>

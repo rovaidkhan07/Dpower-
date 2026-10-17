@@ -27,7 +27,7 @@ function legacyKey(): Buffer | null {
   // Retain the old JWT secret here before rotating JWT_SECRET.
   const secret = process.env.TRACKING_LEGACY_SECRET || process.env.JWT_SECRET;
   return secret
-    ? crypto.createHash("sha256").update(`kharidly:tracking-token:v1:${secret}`).digest()
+    ? crypto.createHash("sha256").update(`dk_power:tracking-token:v1:${secret}`).digest()
     : null;
 }
 
