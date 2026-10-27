@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { prisma } from '../lib/prisma';
-
+/// testing
 async function main() {
   const chargerCategory = await prisma.category.findUnique({
     where: { slug: 'chargers' },
